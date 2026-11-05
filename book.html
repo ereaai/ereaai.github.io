@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book a class</title>
+<link rel="manifest" href="book.webmanifest">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#14162B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Book">
+<style>
+html,body{margin:0;height:100%;background:#14162B}
+iframe{position:fixed;inset:0;width:100%;height:100%;border:0;background:#F5F5F0}
+.msg{max-width:420px;margin:80px auto;padding:24px;background:#fff;border-radius:16px;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1A1C2E;text-align:center}
+</style>
+</head>
+<body>
+<script>
+// Erea client booking page, shown full screen without Google's banner.
+// Link: book.html?b=<studio booking id>  (add &checkin=1 for the door QR, &n=<studio name> for the tab title)
+var BOOK = 'https://script.google.com/macros/s/AKfycbxnhmsae-Wl7sJSyyo6Zg5PSRsYzGLPsq7cWicfp-AxL3M8yOcO9cjweCp2rJEhTICx/exec';
+var q = new URLSearchParams(location.search);
+var b = q.get('b') || '', n = q.get('n') || '';
+try {
+  if (b) { localStorage.setItem('erea_b', b); if (n) localStorage.setItem('erea_n', n); }
+  else { b = localStorage.getItem('erea_b') || ''; n = n || localStorage.getItem('erea_n') || ''; }
+} catch (e) {}
+if (!/^[a-f0-9]{8,32}$/.test(b)) {
+  document.body.innerHTML = '<div class="msg"><b>This booking link is missing its studio.</b><br>Please ask your studio for their booking link.</div>';
+} else {
+  if (n) document.title = n;
+  var f = document.createElement('iframe');
+  f.src = BOOK + '?b=' + b + (q.get('checkin') ? '&checkin=1' : '');
+  f.title = n || 'Book a class';
+  document.body.appendChild(f);
+}
+</script>
+</body>
+</html>

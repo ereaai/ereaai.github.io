@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Erea Help Desk</title>
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#14162B">
+<style>
+html,body{margin:0;height:100%;background:#14162B}
+iframe{position:fixed;inset:0;width:100%;height:100%;border:0;background:#fff}
+</style>
+</head>
+<body>
+<script>
+// Erea Help Desk, full screen. Link: help.html  (staff: help.html?b=<studio booking id>)
+var HELP = 'https://script.google.com/macros/s/AKfycbxnhmsae-Wl7sJSyyo6Zg5PSRsYzGLPsq7cWicfp-AxL3M8yOcO9cjweCp2rJEhTICx/exec?help=1';
+var b = new URLSearchParams(location.search).get('b') || '';
+var f = document.createElement('iframe');
+f.src = HELP + (/^[a-f0-9]{8,32}$/.test(b) ? '&b=' + b : '');
+f.title = 'Erea Help Desk';
+document.body.appendChild(f);
+</script>
+</body>
+</html>
