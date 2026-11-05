@@ -7,3 +7,4 @@ Erea AI website and app links, hosted free on GitHub Pages.
 - `/book?b=<booking id>&n=<studio name>` - client booking page, no Google banner. Add `&checkin=1` for the door QR.
 - `/desk?s=<studio key>` - staff Front Desk launcher (installable app)
 - `/help` - Erea Help Desk
+
