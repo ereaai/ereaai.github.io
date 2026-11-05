@@ -131,3 +131,8 @@ footer a{color:var(--navy);text-decoration:none;margin-right:18px;font-weight:60
 .legal h2{font-size:20px;font-weight:800;margin:28px 0 6px}
 .legal p,.legal li{color:#3A3A55}
 .legal blockquote{margin:12px 0;padding:14px 18px;background:#fff;border-left:4px solid var(--coral);border-radius:8px}
+
+/* video */
+.watch{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.vid{justify-self:center;width:100%;max-width:340px;aspect-ratio:9/16;border-radius:28px;background:var(--navy);box-shadow:0 30px 60px rgba(34,38,59,.22);display:block}
+@media(max-width:860px){.watch{grid-template-columns:1fr;gap:28px}.vid{max-width:320px}}
