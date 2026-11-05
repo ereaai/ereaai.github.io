@@ -12,32 +12,31 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Front Desk">
 <style>
-body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FFF8EF;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#22263B}
-.card{max-width:380px;margin:24px;padding:28px;background:#fff;border-radius:20px;border:1px solid #F1E2CC;text-align:center}
-.card img{width:72px;height:72px;border-radius:18px}
-h1{margin:14px 0 6px;font-size:24px}
-p{margin:0 0 18px;color:#4A4458;line-height:1.5}
-a.go{display:block;padding:14px;border-radius:999px;background:#C8402A;color:#fff;font-weight:700;text-decoration:none}
+html,body{margin:0;height:100%;background:#f7f8fc;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+iframe{position:fixed;left:0;right:0;top:0;bottom:26px;width:100%;height:calc(100% - 26px);border:0;background:#f7f8fc}
+.bar{position:fixed;left:0;right:0;bottom:0;height:26px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#5b5f7a;background:#eef0ff;border-top:1px solid #e3e5f0}
+.bar a{color:#4f46e5;font-weight:700}
+.msg{max-width:380px;margin:80px auto;padding:28px;background:#fff;border-radius:20px;text-align:center;color:#22263B}
 </style>
 </head>
 <body>
-<div class="card">
-  <img src="icon-192.png" alt="">
-  <h1>Erea Front Desk</h1>
-  <p id="t">Opening your Front Desk…</p>
-  <a class="go" id="go" href="#" hidden>Open Front Desk</a>
-</div>
 <script>
-// Staff launcher. Link: desk.html?s=<studio key>. Opens the Front Desk directly so staff stay signed in to Google.
+// Staff Front Desk, shown inside Erea's page (no Google banner). Link: desk?s=<studio key>
 var DESK = 'https://script.google.com/macros/s/AKfycbyFGh5QoxaRvqYYXL7rLemDDrKmyCLZPcnrG-oaj0ABk9lgoZTV34Gax3e44QkbXEAa/exec';
 var s = new URLSearchParams(location.search).get('s') || '';
 try { if (s) localStorage.setItem('erea_s', s); else s = localStorage.getItem('erea_s') || ''; } catch (e) {}
 if (!/^[A-Za-z0-9]{3,40}$/.test(s)) {
-  document.getElementById('t').textContent = 'This link is missing your studio. Ask Erea for your Front Desk link.';
+  document.body.innerHTML = '<div class="msg"><b>This link is missing your studio.</b><br>Ask Erea for your Front Desk link.</div>';
 } else {
-  var url = DESK + '?s=' + s, go = document.getElementById('go');
-  go.href = url; go.hidden = false;
-  setTimeout(function () { location.href = url; }, 600);
+  var url = DESK + '?s=' + s;
+  var f = document.createElement('iframe');
+  f.src = url; f.title = 'Erea Front Desk';
+  f.allow = 'clipboard-write';
+  document.body.appendChild(f);
+  var bar = document.createElement('div');
+  bar.className = 'bar';
+  bar.innerHTML = 'Erea Front Desk · Not loading? <a href="' + url + '" target="_top">Open it here</a>';
+  document.body.appendChild(bar);
 }
 </script>
 </body>
