@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Schedule</title>
+<link rel="manifest" href="/solo/desk.webmanifest">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#137A6F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="My Schedule">
+<style>
+html,body{margin:0;height:100%;background:#FFF8EF;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+iframe{position:fixed;left:0;right:0;top:0;bottom:26px;width:100%;height:calc(100% - 26px);border:0;background:#FFF8EF}
+.bar{position:fixed;left:0;right:0;bottom:0;height:26px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#6B6070;background:#E3F6F1;border-top:1px solid #BFE5DB}
+.bar a{color:#137A6F;font-weight:700}
+.msg{max-width:380px;margin:80px auto;padding:28px;background:#fff;border-radius:20px;text-align:center;color:#22263B}
+</style>
+</head>
+<body>
+<script>
+// Erea Solo "My Schedule" for the instructor, shown inside Erea's page (no Google banner). Link: /solo/desk?s=<instructor key>
+var DESK = 'https://script.google.com/macros/s/AKfycbyZRRobTZxFVM4-qEVr8yqFOBo0WqXgWOevuUwVR185Xq7Jk8b3NBM2obNDHcxA7V_PxQ/exec';
+var s = new URLSearchParams(location.search).get('s') || '';
+try { if (s) localStorage.setItem('erea_solo_s', s); else s = localStorage.getItem('erea_solo_s') || ''; } catch (e) {}
+if (!/^[A-Za-z0-9]{3,40}$/.test(s)) {
+  document.body.innerHTML = '<div class="msg"><b>This link is missing your account.</b><br>Ask Erea for your My Schedule link.</div>';
+} else {
+  var url = DESK + '?s=' + s;
+  var f = document.createElement('iframe');
+  f.src = url; f.title = 'My Schedule';
+  f.allow = 'clipboard-write; web-share';
+  document.body.appendChild(f);
+  var bar = document.createElement('div');
+  bar.className = 'bar';
+  bar.innerHTML = 'Erea Solo · Not loading? <a href="' + url + '" target="_top">Open it here</a>';
+  document.body.appendChild(bar);
+}
+</script>
+</body>
+</html>
