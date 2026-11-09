@@ -1,6 +1,6 @@
 // Interest list form: sends signups to the Erea Interest List Google Apps Script (saves to a sheet + emails Erea).
 (function () {
-  var ENDPOINT = '__ENDPOINT__';
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbyrFCLg4X4Qu3QwydWGEG55byu4lUwXY1WxJWRWvFiN0NNra0aqV_6ovV4CvYyQb1CVGg/exec';
   var f = document.getElementById('jform'); if (!f) return;
   var msg = document.getElementById('jmsg'), btn = f.querySelector('button');
   f.addEventListener('submit', function (e) {
