@@ -28,14 +28,14 @@ label.f{display:block;font-size:14px;font-weight:600;margin:16px 0 6px}
 .input{width:100%;padding:13px 12px;font-size:16px;border:1px solid #C9C8C0;border-radius:10px;color:#9A97A0;background:#fff}
 .check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:13px;line-height:1.45;color:var(--muted);outline:3px solid var(--accent);outline-offset:6px;border-radius:4px}
 .box{width:20px;height:20px;flex:none;border:2px solid #8A8790;border-radius:4px;background:#fff;margin-top:1px}
-.go{width:100%;margin-top:22px;padding:15px;border:0;border-radius:12px;background:var(--ink);color:#fff;font-size:17px;font-weight:700;opacity:.55}
+.go{width:100%;margin-top:22px;padding:15px;border:0;border-radius:12px;background:var(--ink);color:#fff;font-size:17px;font-weight:700}
 .note{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}
 </style>
 </head>
 <body>
 <div class="top">
   <h1>Erea Solo: how clients consent to texts</h1>
-  <p>This is the booking form a client sees on an independent instructor's Erea Solo booking page after picking a session. The SMS consent checkbox (highlighted) is <b>unchecked by default</b>, and the booking button stays disabled until the client ticks it.</p>
+  <p>This is the booking form a client sees on an independent instructor's Erea Solo booking page after picking a session. The SMS consent checkbox (highlighted) is <b>unchecked by default</b>, and the booking cannot go through until the client ticks it (the page and the server both check for it).</p>
   <p>Shown for the instructor business <b>Solo Demo Pilates</b>. Live page: <a href="https://ereaai.com/solo/book?b=3a9a5f5852c4&amp;n=Solo%20Demo%20Pilates">ereaai.com/solo/book</a> (tap any session). Full policy: <a href="https://ereaai.com/sms-opt-in">ereaai.com/sms-opt-in</a> · <a href="https://ereaai.com/privacy">Privacy</a> · <a href="https://ereaai.com/terms">Terms</a></p>
 </div>
 <div class="frame" aria-label="Booking form as shown on a phone">
@@ -47,7 +47,7 @@ label.f{display:block;font-size:14px;font-weight:600;margin:16px 0 6px}
     <label class="f">Your name</label><div class="input">First and last name</div>
     <label class="f">Mobile phone</label><div class="input">(555) 555-1234</div>
     <div class="check"><span class="box" aria-hidden="true"></span><span>I agree to receive booking confirmations, reminders and open-spot offers by text from Solo Demo Pilates. Msg &amp; data rates may apply. Reply STOP to opt out.</span></div>
-    <button class="go" disabled>Book my spot</button>
+    <div class="go" style="text-align:center">Book my spot</div>
     <p class="note">After booking, the client receives a confirmation text from Solo Demo Pilates that includes "Reply STOP to opt out."</p>
   </div></main>
 </div>
