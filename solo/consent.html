@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erea Solo · SMS consent on the booking page</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.png">
+<style>
+:root{--ink:#137A6F;--text:#22263B;--muted:#6B6070;--line:#F1E2CC;--soft:#FFF8EF;--accent:#FFD54F}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--soft);color:var(--text);line-height:1.5}
+.top{max-width:640px;margin:0 auto;padding:22px 16px 6px}
+.top h1{font-size:22px;margin:0 0 6px}
+.top p{margin:6px 0;color:var(--muted);font-size:15px}
+.top a{color:var(--ink);font-weight:700}
+.frame{max-width:420px;margin:18px auto 40px;border:10px solid #22263B;border-radius:34px;overflow:hidden;background:var(--soft)}
+header{background:var(--ink);color:#fff;padding:22px 18px 18px}
+header .b{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--accent)}
+header h2{margin:4px 0 0;font-size:24px}
+main{padding:16px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.panel h3{margin:0;font-size:20px}
+.when{margin:4px 0 0;color:var(--muted);font-size:15px}
+.where{margin-top:12px;padding:12px 14px;border-radius:12px;background:var(--soft);border:1px solid var(--line);font-size:15px}
+.where b{display:block}.where span{color:var(--muted);font-size:14px}
+label.f{display:block;font-size:14px;font-weight:600;margin:16px 0 6px}
+.input{width:100%;padding:13px 12px;font-size:16px;border:1px solid #C9C8C0;border-radius:10px;color:#9A97A0;background:#fff}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:13px;line-height:1.45;color:var(--muted);outline:3px solid var(--accent);outline-offset:6px;border-radius:4px}
+.box{width:20px;height:20px;flex:none;border:2px solid #8A8790;border-radius:4px;background:#fff;margin-top:1px}
+.go{width:100%;margin-top:22px;padding:15px;border:0;border-radius:12px;background:var(--ink);color:#fff;font-size:17px;font-weight:700;opacity:.55}
+.note{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Erea Solo: how clients consent to texts</h1>
+  <p>This is the booking form a client sees on an independent instructor's Erea Solo booking page after picking a session. The SMS consent checkbox (highlighted) is <b>unchecked by default</b>, and the booking button stays disabled until the client ticks it.</p>
+  <p>Shown for the instructor business <b>Solo Demo Pilates</b>. Live page: <a href="https://ereaai.com/solo/book?b=3a9a5f5852c4&amp;n=Solo%20Demo%20Pilates">ereaai.com/solo/book</a> (tap any session). Full policy: <a href="https://ereaai.com/sms-opt-in">ereaai.com/sms-opt-in</a> · <a href="https://ereaai.com/privacy">Privacy</a> · <a href="https://ereaai.com/terms">Terms</a></p>
+</div>
+<div class="frame" aria-label="Booking form as shown on a phone">
+  <header><div class="b">Book a session</div><h2>Solo Demo Pilates</h2></header>
+  <main><div class="panel">
+    <h3>Small Group Mat</h3>
+    <p class="when">Saturday, Nov 14 at 10:00 AM · 50 min</p>
+    <div class="where"><b>Verona Park</b><span>Verona Park, Verona, NJ 07044</span></div>
+    <label class="f">Your name</label><div class="input">First and last name</div>
+    <label class="f">Mobile phone</label><div class="input">(555) 555-1234</div>
+    <div class="check"><span class="box" aria-hidden="true"></span><span>I agree to receive booking confirmations, reminders and open-spot offers by text from Solo Demo Pilates. Msg &amp; data rates may apply. Reply STOP to opt out.</span></div>
+    <button class="go" disabled>Book my spot</button>
+    <p class="note">After booking, the client receives a confirmation text from Solo Demo Pilates that includes "Reply STOP to opt out."</p>
+  </div></main>
+</div>
+</body>
+</html>
