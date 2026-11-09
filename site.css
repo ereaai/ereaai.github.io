@@ -169,3 +169,4 @@ footer a{color:var(--navy);text-decoration:none;margin-right:18px;font-weight:60
 
 /* small "other businesses" line above the footer */
 .other-biz{max-width:720px;margin:10px auto 0;text-align:center;font-size:14px;color:var(--muted)}
+.walk{display:block;width:100%;max-width:960px;margin:22px auto 0;border-radius:20px;box-shadow:0 20px 44px rgba(34,38,59,.18);background:var(--navy);aspect-ratio:16/9}
