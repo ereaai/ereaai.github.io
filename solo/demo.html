@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erea Solo practice demo</title>
+<meta name="description" content="A hands-on practice demo of Erea. Nothing you type is saved and no texts are sent.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFF8EF">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=DM+Sans:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/site.css?v=20261109">
+<link rel="stylesheet" href="/demo.css?v=20261109b">
+<style>:root{--acc:#137A6F} .intro h1 em{font-style:normal;color:#137A6F} .btn.pri{background:#137A6F} .btn.pri:hover{background:#0E5A52} .logo span{color:#137A6F}</style>
+</head>
+<body data-view="client">
+<header class="dnav"><div class="wrap">
+  <a class="logo" href="/solo"><img src="/icon-192.png" alt="" width="30" height="30" style="border-radius:8px"><b style="font-weight:900">erea<span>.</span>ai</b></a><span class="solotag" style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:800;background:#137A6F;color:#fff;padding:3px 9px;border-radius:999px">Solo</span>
+  <span class="pbadge">Practice demo</span>
+  <div class="right"><a class="back" href="/solo">← Back to site</a></div>
+</div></header>
+<div class="notice"><div class="wrap">🛟 <b>Practice demo.</b> Tap anything. Nothing you type is saved and no real texts are sent. Want to see real texts land on your own phone? <a href="/solo#join">Ask us for a live demo</a>.</div></div>
+
+<main class="wrap">
+  <section class="intro" style="padding:26px 0 8px">
+    <h1>Try Erea Solo as a client <em>and</em> as the instructor.</h1>
+    <p>Book a session as a client, wherever you teach this week, and watch it land on My Schedule. Tap ✕ on a full session and the waitlist refills it by text.</p>
+    <div class="brand">
+      
+      <label for="bizname">Type your business name: <input id="bizname" maxlength="40" autocomplete="off" placeholder="e.g. Pilates with Jess"></label>
+      <div class="bnote">Your business name goes on your booking page and every text your clients get.</div>
+    </div>
+  </section>
+
+  <div class="vtabs" role="tablist">
+    <button class="vtab" role="tab" data-v="client" aria-selected="true">📱 Client view</button>
+    <button class="vtab" role="tab" data-v="owner" aria-selected="false">🖥️ Instructor view</button>
+  </div>
+
+  <div class="stage">
+    <div class="pane-client"><p class="vlabel">📱 What your clients see</p><div class="phone2"><div class="app" id="client"></div></div></div>
+    <div class="pane-owner"><p class="vlabel">🖥️ What you see</p><div class="desk" id="owner"></div></div>
+  </div>
+
+  <section class="endcta">
+    <div><h2>Like what you see?</h2><p>We set it all up for you. No contract, and we never take a cut of your sales.</p></div>
+    <div class="btns"><a class="btn pri" href="https://buy.stripe.com/dRmdR91s2en5faS3EE3VC02">Get started · $39/mo</a><a class="btn sec" style="background:transparent;color:#fff;border-color:#fff" href="/solo#join">Join the interest list</a></div>
+  </section>
+</main>
+<div id="toast" role="status"></div>
+<script>window.EREA_DEMO={ownerTabLabel:'Instructor view',
+  defaultName:'Your Business Name', logo:false, bookTitle:'Book a session', ownerTitle:'My Schedule',
+  newPay:'due', pays:['pack','paid','due'],
+  payLabels:{pack:'Package',paid:'Paid',due:'Pay instructor'},
+  ownerTabs:[['today','Schedule'],['wait','Waitlist'],['members','Clients'],['share','Booking link']],
+  planWord:'Package',
+  schedule:[
+    {time:'7:00 AM',name:'Private Reformer',who:'Private',where:'Studio Lumen, Montclair',cap:1,full:true},
+    {time:'10:00 AM',name:'Small Group Mat',who:'Small group',where:'Verona Park, Verona',cap:8},
+    {time:'1:00 PM',name:'In-Home Private',who:'Private',where:'Client\'s home, West Orange',cap:1},
+    {time:'6:00 PM',name:'Duet Pilates',who:'Duet',where:'Rented room, Bloomfield',cap:2,full:true}
+  ],
+  members:[['Maya R.','10-session package','7','—'],['Jordan T.','Monthly privates','4','Nov 30'],['Aisha K.','5-session package','1','—'],['Dev P.','Drop-in','—','—']],
+  txtBooked:"Hi {first}! You're booked with {biz}: {cls}, {when}. Where: {where}. Please pay your instructor before class. Reply C to confirm or R to cancel."
+};</script>
+<script src="/demo.js?v=20261109b"></script>
+</body>
+</html>
