@@ -31,8 +31,8 @@ const LOOKS = {
 h1{text-transform:uppercase;letter-spacing:1px;font-weight:400}
 h2{font-weight:400;text-transform:uppercase;letter-spacing:2px}
 .card,.plan,.bookbox,.media,.qa{border-radius:22px}
-.media.ph{background:radial-gradient(120% 90% at 30% 20%,#EFE4D6 0,#E4D6C5 45%,#D6C3AE 100%)}
-.media.ph:after{content:"";position:absolute;inset:18% 22%;border-radius:999px 999px 24px 24px;border:1px solid rgba(154,106,79,.35)}
+.media.ph{background:radial-gradient(120% 90% at 30% 20%,color-mix(in srgb,var(--soft) 60%,var(--paper)) 0,var(--soft) 45%,color-mix(in srgb,var(--soft) 85%,var(--accent)) 100%)}
+.media.ph:after{content:"";position:absolute;inset:18% 22%;border-radius:999px 999px 24px 24px;border:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
 .band{background:var(--soft)}
 `
   },
@@ -41,23 +41,23 @@ h2{font-weight:400;text-transform:uppercase;letter-spacing:2px}
     vars: { bg: '#F2EADB', paper: '#FFFDF8', ink: '#0F1B2D', muted: '#4F5868', accent: '#B8893B', soft: '#E8DCC2', line: '#D6CBB6', btn: '#B8893B', btnink: '#0F1B2D', dark: '#0F1B2D', darkink: '#F2EADB', red: '#7A2E2A' },
     head: "'Playfair Display',Georgia,serif", body: "'Work Sans',system-ui,sans-serif",
     css: `
-body:before{content:"";display:block;height:10px;background:repeating-linear-gradient(135deg,var(--red) 0 14px,#F2EADB 14px 28px,#0F1B2D 28px 42px,#F2EADB 42px 56px)}
-.top{background:var(--dark);color:var(--darkink);border-bottom:1px solid #2A3A55}
-.top .nav a{color:#D9CFBD}
+body:before{content:"";display:block;height:10px;background:repeating-linear-gradient(135deg,var(--red) 0 14px,var(--bg) 14px 28px,var(--dark) 28px 42px,var(--bg) 42px 56px)}
+.top{background:var(--dark);color:var(--darkink);border-bottom:1px solid color-mix(in srgb,var(--darkink) 15%,var(--dark))}
+.top .nav a{color:color-mix(in srgb,var(--darkink) 85%,transparent)}
 .brand{font-weight:900;font-size:24px}
 .nav a,.btn,.eyebrow,.k{letter-spacing:2px;text-transform:uppercase;font-weight:600}
 .btn{border-radius:2px;font-size:13px}
 .hero{background:var(--dark);color:var(--darkink)}
-.hero h1{color:#F2EADB}.hero h1 i{color:#D2A85A}
-.hero p{color:#D9CFBD}.hero .eyebrow{color:#D2A85A}
-.hero .ghost{color:#F2EADB;border-color:#55617A}
+.hero h1{color:var(--darkink)}.hero h1 i{color:var(--accent)}
+.hero p{color:color-mix(in srgb,var(--darkink) 85%,transparent)}.hero .eyebrow{color:var(--accent)}
+.hero .ghost{color:var(--darkink);border-color:color-mix(in srgb,var(--darkink) 35%,var(--dark))}
 h1,h2{font-weight:900}
 .card,.plan,.bookbox,.qa{border-radius:4px;border:2px solid var(--ink)}
-.row{border-bottom:1px dashed #B9AE9A}
+.row{border-bottom:1px dashed color-mix(in srgb,var(--ink) 30%,var(--bg))}
 .media{border-radius:4px}
-.media.ph{background:repeating-linear-gradient(135deg,#1D2C45 0 22px,#16233A 22px 44px)}
-.media.ph:after{content:"";position:absolute;right:26px;top:26px;bottom:26px;width:22px;border-radius:12px;background:repeating-linear-gradient(160deg,var(--red) 0 12px,#F2EADB 12px 24px,#2E5AA8 24px 36px,#F2EADB 36px 48px);box-shadow:0 0 0 4px #B8893B}
-.band{background:var(--red);color:#F2EADB}.band p{color:#F2EADB}.band .k{color:#E9C98B}
+.media.ph{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--dark) 88%,white) 0 22px,color-mix(in srgb,var(--dark) 94%,white) 22px 44px)}
+.media.ph:after{content:"";position:absolute;right:26px;top:26px;bottom:26px;width:22px;border-radius:12px;background:repeating-linear-gradient(160deg,var(--red) 0 12px,#F2EADB 12px 24px,#2E5AA8 24px 36px,#F2EADB 36px 48px);box-shadow:0 0 0 4px var(--accent)}
+.band{background:var(--red);color:var(--darkink)}.band p{color:var(--darkink)}.band .k{color:color-mix(in srgb,var(--accent) 60%,white)}
 `
   }
 };
@@ -85,7 +85,19 @@ function build(slug) {
   if (!look) throw new Error(`${slug}: look must be one of ${Object.keys(LOOKS).join(', ')}`);
   if (!/^[a-f0-9]{8,32}$/.test(s.bookingId || '')) throw new Error(`${slug}: bookingId missing or wrong`);
 
-  const v = Object.assign({}, look.vars, s.colors || {});          // custom colors override the look
+  // "brand" = the business's own colors/fonts. The SAME block goes into studioBrand in the Erea script,
+  // so the website, booking page and Front Desk all match. Only this business changes.
+  const br = s.brand || {}, bc = br.colors || {};
+  const fromBrand = {};
+  const map = { dark: ['ink', 'dark'], onDark: ['darkink'], accent: ['accent'], light: ['soft'], bg: ['bg'], paper: ['paper'], line: ['line'], muted: ['muted'], stripe: ['red'] };
+  Object.keys(map).forEach(k => { if (/^#[0-9a-fA-F]{3,8}$/.test(bc[k] || '')) map[k].forEach(t => fromBrand[t] = bc[k]); });
+  if (s.look === 'linen') { if (fromBrand.ink) fromBrand.btn = fromBrand.ink; if (fromBrand.darkink) fromBrand.btnink = fromBrand.darkink; }
+  if (s.look === 'crown') { if (fromBrand.accent) fromBrand.btn = fromBrand.accent; if (fromBrand.ink) fromBrand.btnink = fromBrand.ink; }
+  const v = Object.assign({}, look.vars, fromBrand, s.colors || {});   // s.colors = rare site-only tweaks
+  const fontOk = f => /^[A-Za-z0-9 ]{2,40}$/.test(f || '');
+  const headFont = fontOk(br.headFont) ? `'${br.headFont.trim()}',Georgia,serif` : look.head;
+  const bodyFont = fontOk(br.bodyFont) ? `'${br.bodyFont.trim()}',system-ui,sans-serif` : look.body;
+  const extraFonts = [br.headFont, br.bodyFont].filter(fontOk).map(f => `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${f.trim().replace(/ /g, '+')}:wght@400;500;600;700&display=swap">`).join('');
   const vars = Object.entries(v).map(([k, val]) => `--${k}:${val}`).join(';');
   const bookUrl = `https://ereaai.com/book?b=${s.bookingId}&n=${encodeURIComponent(s.name)}&theme=${s.look}`;
   const embed = `${BOOK_ENGINE}?b=${s.bookingId}&theme=${s.look}`;   // booking page wears the site's look
@@ -189,9 +201,9 @@ ${s.ogImage ? `<meta property="og:image" content="${esc(new URL(s.ogImage, home)
 ${s.favicon ? `<link rel="icon" href="${esc(s.favicon)}">` : ''}
 <meta name="theme-color" content="${v.dark || v.ink}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?${look.fonts}&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?${look.fonts}&display=swap">${extraFonts}
 <style>
-:root{${vars};--head:${look.head};--body:${look.body}}
+:root{${vars};--head:${headFont};--body:${bodyFont}}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
 a{color:inherit}img,video{display:block;width:100%;height:100%;object-fit:cover}

@@ -23,6 +23,16 @@ Photos: `"heroMedia": "hero.jpg"`. Muted looping video: `"heroMedia": {"video": 
 Keep each file well under 25 MB (Cloudflare Pages limit). Compress clips to 10–20 seconds. Longer videos go on the business's YouTube (`youtube`).
 No photo yet → a tasteful placeholder in the look's colors.
 
+## A business's own brand (plug and play)
+One block, used in TWO places so the website, booking page and Front Desk all match:
+```
+"brand": { "colors": { "dark": "#1E2A44", "accent": "#C9A227" }, "headFont": "Playfair Display", "bodyFont": "Inter" }
+```
+1. Put it in their site.json as "brand" → rebuild → push (website).
+2. In the Erea script fill BRAND_SET = { studioKey, look: 'linen' or 'crown', colors: {...same...}, headFont, bodyFont } → Run studioBrand (booking page + Front Desk). No redeploy needed.
+Colors you leave out keep the look's own. Keys: dark (text + main buttons), accent (highlights), light (header/pills), bg (page), paper (cards), line (borders), muted (small text), onDark (text on dark), stripe (Crown pole/band), btn (Front Desk buttons).
+Saved per business: one business's brand never changes another's. NEVER edit the base looks (LOOKS in build.js, BRAND_LOOKS in the script) for one customer; the base looks are shared by everyone on that look. Kwame (Nov 11): the templates themselves won't change, only colors, fonts and photos.
+
 ## One-time setup: the traffic director (Kwame's Cloudflare sign-in needs an emailed code)
 1. Cloudflare → Workers & Pages → Create → Worker → name it `erea-sites` → Deploy → Edit code → paste `worker.js` → Deploy.
 2. The Worker → Settings → Domains & Routes → Add → Route: `*.ereaai.com/*`, zone ereaai.com.
