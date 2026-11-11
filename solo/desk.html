@@ -28,7 +28,8 @@ try { if (s) localStorage.setItem('erea_solo_s', s); else s = localStorage.getIt
 if (!/^[A-Za-z0-9]{3,40}$/.test(s)) {
   document.body.innerHTML = '<div class="msg"><b>This link is missing your account.</b><br>Ask Erea for your My Schedule link.</div>';
 } else {
-  var url = DESK + '?s=' + s;
+  var th = (new URLSearchParams(location.search).get('theme') || '').replace(/[^a-z]/g, '');
+  var url = DESK + '?s=' + s + (th ? '&theme=' + th : '');
   var f = document.createElement('iframe');
   f.src = url; f.title = 'My Schedule';
   f.allow = 'clipboard-write; web-share';

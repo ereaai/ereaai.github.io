@@ -21,7 +21,7 @@ iframe{position:fixed;inset:0;width:100%;height:100%;border:0;background:#FFF8EF
 <body>
 <script>
 // Erea Solo client booking page, shown full screen without Google's banner.
-// Link: /solo/book?b=<instructor booking id>&n=<instructor name>
+// Link: /solo/book?b=<booking id>&n=<business name>  (preview a style: &theme=clay|mint|noir|blush|sky)
 var BOOK = 'https://script.google.com/macros/s/AKfycbxmxU-cwk20Gqvpz6xf4aOnosJhZFhT0E4D1FH_JBpskJGDRDZgjOTXc-GZQtm5M_YaUA/exec';
 var q = new URLSearchParams(location.search);
 var b = q.get('b') || '', n = q.get('n') || '';
@@ -30,11 +30,12 @@ try {
   else { b = localStorage.getItem('erea_solo_b') || ''; n = n || localStorage.getItem('erea_solo_n') || ''; }
 } catch (e) {}
 if (!/^[a-f0-9]{8,32}$/.test(b)) {
-  document.body.innerHTML = '<div class="msg"><b>This booking link is missing its instructor.</b><br>Please ask your instructor for their booking link.</div>';
+  document.body.innerHTML = '<div class="msg"><b>This booking link is missing its business.</b><br>Please ask the business for their booking link.</div>';
 } else {
   if (n) document.title = n;
   var f = document.createElement('iframe');
-  f.src = BOOK + '?b=' + b + (q.get('checkin') ? '&checkin=1' : '');
+  var th = (q.get('theme') || '').replace(/[^a-z]/g, '');
+  f.src = BOOK + '?b=' + b + (q.get('checkin') ? '&checkin=1' : '') + (th ? '&theme=' + th : '');
   f.title = n || 'Book a session';
   document.body.appendChild(f);
 }
