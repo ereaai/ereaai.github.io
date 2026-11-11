@@ -168,12 +168,12 @@
 
 /* ---------- Solo phones ---------- */
 .solo-wrap{margin-top:26px;background:#F7F6F3;border:1px solid #E7E3DB;border-radius:26px;padding:30px 26px;scroll-margin-top:80px}
-.sp-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px}
-@media(max-width:1100px){.sp-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px}.sp-item{flex:0 0 260px;scroll-snap-align:start}}
-.sp-item{margin:0;display:flex;flex-direction:column;gap:12px}
+.sp-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:30px 26px}
+.sp-item{margin:0;display:flex;flex-direction:column;gap:12px;width:290px}
+@media(max-width:700px){.sp-grid{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px}.sp-item{flex:0 0 260px;scroll-snap-align:start}}
 .sp-item figcaption b{display:block;font-size:18px;color:#1A1A1A}
 .sp-item figcaption span{font-size:14px;color:#5C5A55}
-.sp-phone{aspect-ratio:390/780;border-radius:38px;border:8px solid #1A1A1A;background:var(--bg);color:var(--ink);padding:28px 14px 16px;display:flex;flex-direction:column;gap:11px;overflow:hidden;font-family:'DM Sans',sans-serif}
+.sp-phone{min-height:560px;border-radius:38px;border:8px solid #1A1A1A;background:var(--bg);color:var(--ink);padding:28px 14px 16px;display:flex;flex-direction:column;gap:11px;overflow:hidden;font-family:'DM Sans',sans-serif}
 .sp-top{display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center}
 .sp-logo{width:50px;height:50px;border-radius:var(--lr);background:var(--bb);color:var(--bt);display:grid;place-items:center;font-family:var(--f);font-size:22px}
 .sp-name{font-family:var(--f);font-size:calc(var(--ns) * .78);line-height:1.05;letter-spacing:var(--tr);text-transform:var(--tc)}
