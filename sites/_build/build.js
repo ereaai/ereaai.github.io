@@ -149,7 +149,7 @@ function build(slug) {
 <section id="book" class="wrap sec">
   <div class="sh"><span class="k">${esc(s.bookEyebrow || 'Takes a few seconds')}</span><h2>${esc(s.bookTitle || L.book)}</h2>
   <p class="sub">Pick a time, add your name and phone, done. You'll get a text to confirm. Full? Join the waitlist right here.</p></div>
-  <div class="bookbox"><iframe src="${embed}" title="Book with ${esc(s.name)}" loading="lazy"></iframe></div>
+  <div class="bookbox"><iframe src="${embed}" title="Book with ${esc(s.name)}"></iframe></div>
   <p class="small"><a href="${bookUrl}">Open booking full screen</a></p>
 </section>`;
 
