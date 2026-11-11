@@ -14,6 +14,23 @@
 <link rel="stylesheet" href="/site.css?v=20261111b">
 <link rel="stylesheet" href="/demo.css?v=20261109b">
 <style>:root{--acc:#C8402A} .intro h1 em{font-style:normal;color:#C8402A} .btn.pri{background:#C8402A} .btn.pri:hover{background:#A9321F} .logo span{color:#C8402A}</style>
+<style>
+.samples{margin:28px 0 0;background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px}
+.samples h3{margin:0;font-size:clamp(22px,3vw,28px)}
+.samples>p{margin:6px 0 0;color:#4A4458;max-width:640px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+.scard{display:block;text-decoration:none;border-radius:18px;padding:24px 22px 20px;position:relative;overflow:hidden;transition:transform .15s}
+.scard:hover{transform:translateY(-2px)}
+.scard small{display:block;font-size:12px;letter-spacing:2px;text-transform:uppercase;opacity:.75}
+.scard b{display:block;font-size:28px;line-height:1.1;margin:8px 0 10px;font-weight:400}
+.scard span{font-size:14px;font-weight:700}
+.sc-linen{background:#F5EFE6;color:#2A2420;border:1px solid #E6DDD1}
+.sc-linen b{font-family:'Cormorant Garamond',Georgia,serif;text-transform:uppercase;letter-spacing:3px}
+.sc-crown{background:#0F1B2D;color:#F2EADB}
+.sc-crown:before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:repeating-linear-gradient(135deg,#7A2E2A 0 12px,#F2EADB 12px 24px,#0F1B2D 24px 36px,#F2EADB 36px 48px)}
+.sc-crown b{font-family:'Playfair Display',Georgia,serif;font-weight:900}
+.sc-crown span{color:#D2A85A}
+</style>
 </head>
 <body data-view="client">
 <header class="dnav"><div class="wrap">
@@ -27,6 +44,7 @@
   <section class="intro" style="padding:26px 0 8px">
     <h1>Try Erea as a client <em>and</em> as the owner.</h1>
     <p>Book a class as a client, and watch it land on the Front Desk. Cancel someone in a full class and see the waitlist refill the spot by text.</p>
+    <p>Want to see a whole website? <a href="#samples">Take a look at our two sample sites ↓</a></p>
     <div class="brand">
       <div class="logo-slot" aria-hidden="true">YOUR<br>LOGO</div>
       <label for="bizname">Type your business name: <input id="bizname" maxlength="40" autocomplete="off" placeholder="e.g. Crown Line Barbers"></label>
@@ -44,6 +62,14 @@
     <div class="pane-owner"><p class="vlabel">🖥️ What you and your front desk see</p><div class="desk" id="owner"></div></div>
   </div>
 
+  <div class="samples" style="margin-bottom:28px" id="samples">
+      <h3>Now see a full website</h3>
+      <p>Two full websites built with Erea, booking and waitlist included. Scroll them, tap around, try them on your phone. Yours gets your name, photos and prices.</p>
+      <div class="sgrid">
+        <a class="scard sc-linen" href="/sites/willow/" target="_blank" rel="noopener"><small>Look A · Linen · Pilates studio</small><b>Willow Studio</b><span>Open the sample site →</span></a>
+        <a class="scard sc-crown" href="/sites/crownline/" target="_blank" rel="noopener"><small>Look E · Crown · Barbershop</small><b>Crown Line Barber Co.</b><span>Open the sample site →</span></a>
+      </div>
+    </div>
   <section class="endcta">
     <div><h2>Like what you see?</h2><p>We set it all up for you, website included. The first 15 businesses keep $79 a month for life. No contract, no cut of your sales.</p></div>
     <div class="btns"><a class="btn pri" href="https://buy.stripe.com/aFadR9fiS6UD4weeji3VC03" data-founding="79">Claim a founding spot ($79/mo)</a><a class="btn sec" style="background:transparent;color:#fff;border-color:#fff" href="/#join">Join the interest list</a></div>
