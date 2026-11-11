@@ -87,8 +87,8 @@ function build(slug) {
 
   const v = Object.assign({}, look.vars, s.colors || {});          // custom colors override the look
   const vars = Object.entries(v).map(([k, val]) => `--${k}:${val}`).join(';');
-  const bookUrl = `https://ereaai.com/book?b=${s.bookingId}&n=${encodeURIComponent(s.name)}`;
-  const embed = `${BOOK_ENGINE}?b=${s.bookingId}`;
+  const bookUrl = `https://ereaai.com/book?b=${s.bookingId}&n=${encodeURIComponent(s.name)}&theme=${s.look}`;
+  const embed = `${BOOK_ENGINE}?b=${s.bookingId}&theme=${s.look}`;   // booking page wears the site's look
   const L = Object.assign({ book: 'Book now', services: 'Services', pricing: 'Pricing', about: 'About', visit: 'Visit' }, s.labels || {});
   const home = s.domain ? `https://${s.domain}/` : `https://${slug}.ereaai.com/`;
   const c = s.contact || {};

@@ -34,7 +34,8 @@ if (!/^[a-f0-9]{8,32}$/.test(b)) {
 } else {
   if (n) document.title = n;
   var f = document.createElement('iframe');
-  f.src = BOOK + '?b=' + b + (q.get('checkin') ? '&checkin=1' : '');
+  var th = (q.get('theme') || '').replace(/[^a-z]/g, '');
+  f.src = BOOK + '?b=' + b + (q.get('checkin') ? '&checkin=1' : '') + (th ? '&theme=' + th : '');
   f.title = n || 'Book a class';
   document.body.appendChild(f);
 }
