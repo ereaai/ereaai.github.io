@@ -8,6 +8,7 @@ Erea AI website and app links, hosted free on GitHub Pages.
 - `/desk?s=<studio key>` - staff Front Desk launcher (installable app)
 - `/help` - Erea Help Desk
 
+- `/styles` - public styles page: the 5 Erea website looks and 5 Erea Solo booking-link styles
 - `/solo` - Erea Solo page (independent instructors, teal)
 - `/solo/book?b=<booking id>&n=<name>` - Erea Solo client booking page (Solo engine), no Google banner
 - `/solo/desk?s=<instructor key>` - Erea Solo "My Schedule" launcher (installable app)

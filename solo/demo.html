@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=DM+Sans:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="/site.css?v=20261109">
+<link rel="stylesheet" href="/site.css?v=20261111a">
 <link rel="stylesheet" href="/demo.css?v=20261109b">
 <style>:root{--acc:#137A6F} .intro h1 em{font-style:normal;color:#137A6F} .btn.pri{background:#137A6F} .btn.pri:hover{background:#0E5A52} .logo span{color:#137A6F}</style>
 </head>
@@ -25,8 +25,8 @@
 
 <main class="wrap">
   <section class="intro" style="padding:26px 0 8px">
-    <h1>Try Erea Solo as a client <em>and</em> as the instructor.</h1>
-    <p>Book a session as a client, wherever you teach this week, and watch it land on My Schedule. Tap ✕ on a full session and the waitlist refills it by text.</p>
+    <h1>Try Erea Solo as a client <em>and</em> as the owner.</h1>
+    <p>Book a session as a client, wherever you work this week, and watch it land on My Schedule. Tap ✕ on a full session and the waitlist refills it by text.</p>
     <div class="brand">
       
       <label for="bizname">Type your business name: <input id="bizname" maxlength="40" autocomplete="off" placeholder="e.g. Pilates with Jess"></label>
@@ -36,7 +36,7 @@
 
   <div class="vtabs" role="tablist">
     <button class="vtab" role="tab" data-v="client" aria-selected="true">📱 Client view</button>
-    <button class="vtab" role="tab" data-v="owner" aria-selected="false">🖥️ Instructor view</button>
+    <button class="vtab" role="tab" data-v="owner" aria-selected="false">🖥️ Your view</button>
   </div>
 
   <div class="stage">
@@ -50,7 +50,7 @@
   </section>
 </main>
 <div id="toast" role="status"></div>
-<script>window.EREA_DEMO={ownerTabLabel:'Instructor view',
+<script>window.EREA_DEMO={ownerTabLabel:'Your view',
   defaultName:'Your Business Name', logo:false, bookTitle:'Book a session', ownerTitle:'My Schedule',
   newPay:'due', pays:['pack','paid','due'],
   payLabels:{pack:'Package',paid:'Paid',due:'Pay instructor'},

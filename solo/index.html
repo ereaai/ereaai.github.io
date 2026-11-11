@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Erea Solo · Booking texts for independent instructors</title>
-<meta name="description" content="Erea Solo books your privates and small groups, texts your clients where to meet you, and refills cancelled spots from your waitlist. $39 a month for independent fitness instructors in New Jersey.">
-<meta property="og:title" content="Erea Solo · Your schedule, wherever you are this week">
-<meta property="og:description" content="Booking texts with the place and a map link, a waitlist that refills cancellations, and a phone screen to see who's coming and who's paid. $39/month.">
+<title>Erea Solo · Your whole booking book, in your pocket</title>
+<meta name="description" content="Erea Solo is for solo operators on the go: barbers, braiders, nail techs, trainers, tutors and anyone working on their own. Clients book from your link, Erea texts the reminders, you see who's coming and who's paid. $39 a month.">
+<meta property="og:title" content="Erea Solo · Your whole booking book, in your pocket">
+<meta property="og:description" content="A booking link in your style, booking texts and reminders, and one place on your phone for your clients and payments. $39/month.">
 <meta property="og:image" content="https://ereaai.com/icon-512.png">
 <meta name="theme-color" content="#137A6F">
 <link rel="icon" href="/favicon.png">
@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=DM+Sans:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="/site.css?v=20261109e">
+<link rel="stylesheet" href="/site.css?v=20261111a">
 <style>
 /* Erea Solo: same Erea look, teal as the main color */
 :root{--solo:#137A6F;--solo-d:#0E5A52}
@@ -53,6 +53,12 @@ a{color:var(--solo)}
 .studio-link{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .studio-link p{margin:0;color:#4A4458}
 .faq summary:after{color:var(--solo)}
+.schips{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
+.schip{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;text-decoration:none;color:var(--navy);display:flex;flex-direction:column;gap:2px;text-align:left}
+.schip i{display:flex;align-items:flex-end;justify-content:center;height:64px;border-radius:10px;margin-bottom:8px;border:1px solid #E5E0D8;padding:10px}
+.schip u{display:block;width:70%;height:14px;border-radius:999px}
+.schip span{font-size:13px;color:var(--muted)}
+@media(max-width:760px){.schips{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -64,16 +70,17 @@ a{color:var(--solo)}
     <a href="#features">Features</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
-    <a class="studios" href="/">For studios</a>
+    <a href="/styles#solo">Styles</a>
+    <a class="studios" href="/">Erea (with a website)</a>
     <a class="btn pri" href="/solo#join" data-stripe="https://buy.stripe.com/dRmdR91s2en5faS3EE3VC02">Get started</a>
   </nav>
 </div></header>
 
 <section class="shero" style="padding:0"><div class="wrap">
   <div>
-    <div class="eyebrow">Erea Solo · for independent instructors</div>
-    <h1 style="margin-top:14px">Your schedule,<br><em>wherever you are this week.</em></h1>
-    <p class="lead">Privates at a client's home, a duet at a rented studio, a mat class in the park. Erea Solo books it, texts your clients where to meet you, and refills cancelled spots from your waitlist, while you teach.</p>
+    <div class="eyebrow">Erea Solo · for solo operators on the go</div>
+    <h1 style="margin-top:14px">Your whole booking book,<br><em>in your pocket.</em></h1>
+    <p class="lead">For barbers, braiders, nail techs, trainers, tutors and anyone working on their own. Clients book from your link, Erea texts the reminders, you see who's coming and who's paid. $39 a month.</p>
     <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap">
       <a class="btn pri" href="/solo#join" data-stripe="https://buy.stripe.com/dRmdR91s2en5faS3EE3VC02">Get started →</a>
       <a class="btn sec" href="/solo/demo">Try the live demo</a>
@@ -83,24 +90,24 @@ a{color:var(--solo)}
   </div>
   <div class="phone" aria-hidden="true"><div class="screen">
     <div class="who">Erea Solo · Text Message</div>
-    <div class="bub in">Hi Maya! You're booked with Jess Pilates: Reformer Duet, Sat at 10:00 AM. Where: Studio rental, Short Hills. Map: (link)<span class="where">📍 Opens in Maps</span></div>
+    <div class="bub in">Hi Maya! You're booked with The Lash Room by Tia: Lash fill, Sat at 10:00 AM. Where: Suite 4, Montclair. Map: (link)<span class="where">📍 Opens in Maps</span></div>
     <div class="bub in">Reminder: tomorrow 10:00 AM. Reply C to confirm or R if you can't make it.</div>
     <div class="bub out">R</div>
     <div class="bub tag">A minute later, to Priya</div>
-    <div class="bub in">A spot just opened: Reformer Duet, Sat at 10:00 AM in Short Hills. Reply YES to take it.</div>
+    <div class="bub in">A spot just opened: Lash fill, Sat at 10:00 AM in Montclair. Reply YES to take it.</div>
     <div class="bub out">YES</div>
     <div class="bub in">You're in! See you Saturday.</div>
   </div></div>
 </div></section>
 
 <div class="wrap"><div class="stats">
-  <div class="stat s1"><b>Every place</b><span>in the text: the address and a map link, so nobody goes to last week's studio.</span></div>
+  <div class="stat s1"><b>Every place</b><span>in the text: the address and a map link, so nobody goes to last week's spot.</span></div>
   <div class="stat s2"><b>1 reply</b><span>to confirm, cancel or grab an open spot. C, R or YES. That's it.</span></div>
   <div class="stat s3"><b>0 apps</b><span>for your clients to download. Just a booking link and regular texts.</span></div>
 </div></div>
 
 <section id="walkthrough" style="padding-top:10px;padding-bottom:20px"><div class="wrap">
-  <div class="center"><div class="eyebrow">See it in 30 seconds</div><h2 style="margin-top:10px">What your clients see <em style="font-style:normal;color:var(--solo)">and what you see.</em></h2><p class="sub">A client books a session wherever you teach this week, it lands on My Schedule, and cancellations refill themselves by text.</p></div>
+  <div class="center"><div class="eyebrow">See it in 30 seconds</div><h2 style="margin-top:10px">What your clients see <em style="font-style:normal;color:var(--solo)">and what you see.</em></h2><p class="sub">A client books a time wherever you work this week, it lands on My Schedule, and cancellations refill themselves by text.</p></div>
   <div class="walkwrap">
   <video class="walk" autoplay muted loop playsinline controls preload="metadata" poster="/walkthrough-solo-poster.jpg?v=4" aria-label="35-second walkthrough of the Erea Solo booking page and My Schedule">
     <source src="/erea-walkthrough-solo.mp4?v=4" type="video/mp4">
@@ -111,7 +118,7 @@ a{color:var(--solo)}
 </div></section>
 
 <section id="how"><div class="wrap">
-  <div class="center"><div class="eyebrow">How it works</div><h2 style="margin-top:10px">You teach. Erea Solo does the texting.</h2>
+  <div class="center"><div class="eyebrow">How it works</div><h2 style="margin-top:10px">You work. Erea Solo does the texting.</h2>
   <p class="sub">No front desk, no assistant, no chasing people in your DMs.</p></div>
   <div class="steps">
     <div class="step"><div class="n">1</div><h3>Clients book</h3><p>From your booking link in your bio, or you add them in a few taps on your phone.</p></div>
@@ -122,7 +129,7 @@ a{color:var(--solo)}
 </div></section>
 
 <section id="features" style="padding-top:20px"><div class="wrap">
-  <div class="center"><div class="eyebrow">Everything included</div><h2 style="margin-top:10px">Built for one instructor on the move</h2></div>
+  <div class="center"><div class="eyebrow">Everything included</div><h2 style="margin-top:10px">Built for one person on the move</h2></div>
   <div class="features">
     <div class="feat"><div class="ic" style="background:var(--mint)">📍</div><h3>The place in every text</h3><p>Each session has its own location and address. Clients get the right place and a map link, every time.</p></div>
     <div class="feat"><div class="ic" style="background:var(--butter)">📱</div><h3>My Schedule</h3><p>Your phone screen for the day: sessions, places, clients, one tap to check in or mark paid, and call or text anyone.</p></div>
@@ -136,10 +143,17 @@ a{color:var(--solo)}
   </div>
 </div></section>
 
+<section id="styles" style="padding-top:10px;padding-bottom:30px"><div class="wrap center">
+  <div class="eyebrow">Your booking link</div><h2 style="margin-top:10px">Pick a style. Make it yours.</h2>
+  <p class="sub">5 ready-made styles for your booking link. We swap in your name, logo, colors and font.</p>
+  <div class="schips"><a class="schip" href="/styles#solo"><i style="background:#F4EDE4"><u style="background:#3A2E27"></u></i><b>Soft Clay</b><span>Pilates, yoga, massage</span></a><a class="schip" href="/styles#solo"><i style="background:#EEF7F2"><u style="background:#1F7A55"></u></i><b>Fresh Mint</b><span>Trainers, coaches</span></a><a class="schip" href="/styles#solo"><i style="background:#121212"><u style="background:#F5F5F5"></u></i><b>Studio Noir</b><span>Barbers, stylists</span></a><a class="schip" href="/styles#solo"><i style="background:#FBEFEF"><u style="background:#3D1F2A"></u></i><b>Blush</b><span>Lash, brow, nails</span></a><a class="schip" href="/styles#solo"><i style="background:#EEF4FB"><u style="background:#2457A6"></u></i><b>Sky</b><span>Tutors, lessons</span></a></div>
+  <a class="btn sec" style="margin-top:24px;border-color:var(--solo);color:var(--solo)" href="/styles#solo">See all 5 styles →</a>
+</div></section>
+
 <section><div class="wrap center">
-  <div class="eyebrow">Who it's for</div><h2 style="margin-top:10px">Instructors who run their own clients</h2>
-  <div class="fits"><span>Pilates instructors</span><span>Yoga teachers</span><span>Personal trainers</span><span>Dance teachers</span><span>Martial arts &amp; boxing coaches</span></div>
-  <p class="sub">Also works for tutors, music teachers, coaches and anyone who books clients into sessions. Not for healthcare providers.</p>
+  <div class="eyebrow">Who it's for</div><h2 style="margin-top:10px">Solo operators who run their own clients</h2>
+  <div class="fits"><span>Barbers</span><span>Braiders &amp; loctitians</span><span>Stylists</span><span>Nail techs</span><span>Lash &amp; brow artists</span><span>Personal trainers</span><span>Pilates &amp; yoga instructors</span><span>Dance &amp; martial arts coaches</span><span>Tutors &amp; music teachers</span></div>
+  <p class="sub">Anyone working on their own who books clients into time slots. Not for healthcare providers.</p>
 </div></section>
 
 <section id="pricing" style="padding-top:20px"><div class="wrap">
@@ -147,8 +161,9 @@ a{color:var(--solo)}
   <div class="plan splan">
     <span class="badge">Erea Solo</span>
     <div class="price">$39 <small>/ month</small></div>
-    <div>Everything one instructor needs to book, text and fill sessions.</div>
+    <div>Everything one person needs to book, text and keep track of clients.</div>
     <ul>
+      <li>Your booking link in one of <a href="/styles#solo" style="color:#fff;font-weight:700">5 styles</a>, with your name, logo, colors and font</li>
       <li>Your booking link with times, places, prices and spots left</li>
       <li>Booking texts with the address and a map link</li>
       <li>Day-before reminders: reply C to confirm, R to cancel</li>
@@ -160,7 +175,7 @@ a{color:var(--solo)}
     </ul>
     <a class="btn pri" href="/solo#join" data-stripe="https://buy.stripe.com/dRmdR91s2en5faS3EE3VC02">Get started →</a>
     <p class="fine" style="margin-top:10px"><a href="#join" style="color:#fff;font-weight:700">Not ready yet? Join the interest list.</a></p>
-    <p class="fine">For one instructor teaching their own clients: up to 12 spots per session, about 20 session times a week and about 500 texts a month. Need more spots? Ask us. Businesses with staff or more than one instructor use <a href="/" style="color:#fff;font-weight:700">Erea Studio</a>.</p>
+    <p class="fine">For one person working with their own clients: up to 12 spots per session, about 20 session times a week and about 500 texts a month. Need more spots? Ask us. Want a real website, or have a team? That's <a href="/" style="color:#fff;font-weight:700">Erea</a>.</p>
   </div>
   <div class="sadd">
     <div class="addon a2"><b>Online payments <span class="soon">Coming soon</span></b><span class="p">+$29<small style="font-size:13px;font-weight:500"> /mo</small></span><p>Connect your Square or Stripe so clients pay when they book.</p></div>
@@ -173,20 +188,20 @@ a{color:var(--solo)}
   <div>
     <div class="eyebrow">Interest list</div>
     <h2>Be first in line for Erea Solo.</h2>
-    <p class="lead">We're opening Erea Solo to a small first group of independent instructors in NJ. Join the list and we'll reach out personally to set you up. Nothing to pay today.</p>
+    <p class="lead">We're opening Erea Solo to a small first group of solo operators in NJ. Join the list and we'll reach out personally to set you up. Nothing to pay today.</p>
     <ul><li>A real person reaches out within 1 business day</li><li>We walk you through the demo on your own phone</li><li>You decide if it's right for you. Pay only when you're set up</li></ul>
   </div>
   <form class="jform" id="jform" novalidate>
-    <fieldset class="jtype full"><legend>I am</legend>
-      <label><input type="radio" name="type" value="studio"> A studio</label>
-      <label><input type="radio" name="type" value="solo" checked> A solo instructor</label>
+    <fieldset class="jtype full"><legend>I want</legend>
+      <label><input type="radio" name="type" value="studio"> Erea (a website)</label>
+      <label><input type="radio" name="type" value="solo" checked> Erea Solo (just a link)</label>
     </fieldset>
     <label><span>Your name</span><input name="name" autocomplete="name" required maxlength="100"></label>
     <label><span>Business name <span class="opt">(optional)</span></span><input name="business" autocomplete="organization" maxlength="120"></label>
     <label><span>Email</span><input name="email" type="email" autocomplete="email" required maxlength="120"></label>
     <label><span>Phone <span class="opt">(optional)</span></span><input name="phone" type="tel" autocomplete="tel" maxlength="30"></label>
     <label class="full"><span>Town <span class="opt">(optional)</span></span><input name="town" autocomplete="address-level2" maxlength="80" placeholder="e.g. Montclair, NJ"></label>
-    <label class="full"><span>Anything we should know? <span class="opt">(optional)</span></span><textarea name="note" maxlength="500" placeholder="What you teach, what you use now, what's frustrating about booking"></textarea></label>
+    <label class="full"><span>Anything we should know? <span class="opt">(optional)</span></span><textarea name="note" maxlength="500" placeholder="What you do, how people book you now, which style you like"></textarea></label>
     <label class="hp" aria-hidden="true"><span>Website</span><input name="website" tabindex="-1" autocomplete="off"></label>
     <p class="jmsg" id="jmsg" role="alert" hidden></p>
     <button type="submit">Join the interest list</button>
@@ -197,18 +212,19 @@ a{color:var(--solo)}
 <section id="faq" style="padding-top:20px"><div class="wrap">
   <div class="center"><div class="eyebrow">Questions</div><h2 style="margin-top:10px">Good to know</h2></div>
   <div class="faq">
-    <details><summary>I teach in different places every week. Does that work?</summary><p>Yes, that's what Erea Solo is built for. Each session has its own location and address, and the texts tell clients exactly where to go. Moving one week? Change it in your schedule sheet or text us and we'll update it.</p></details>
+    <details><summary>I work in different places every week. Does that work?</summary><p>Yes, that's what Erea Solo is built for. Each session has its own location and address, and the texts tell clients exactly where to go. Moving one week? Change it in your schedule sheet or text us and we'll update it.</p></details>
     <details><summary>Do my clients need an app?</summary><p>No. They book from your link and get regular texts. If they like, they can save your link to their home screen and it opens like an app.</p></details>
     <details><summary>How do I get paid?</summary><p>However you do now: Tap to Pay on your phone, Venmo, Zelle or cash. Tap "Mark paid" in My Schedule and you'll always know who still owes. Online payments when they book are coming soon as a $29 add-on.</p></details>
     <details><summary>Can I do privates and small groups?</summary><p>Yes. A private is a session with 1 spot, a duet has 2, and a small group can have up to 12. Full sessions get a waitlist automatically.</p></details>
     <details><summary>How long does setup take?</summary><p>We build it for you. Send us your times, places and prices, and your booking link is ready within days. Texting goes live once the phone carriers approve your number, usually about two weeks.</p></details>
-    <details><summary>I also teach at a studio. Can the studio use Erea?</summary><p>Yes. Studios use <a href="/">Erea Studio</a>, built for front desks, staff and bigger classes. Erea Solo is for the clients you run yourself.</p></details>
+    <details><summary>What if I want a real website?</summary><p>Then pick <a href="/">Erea</a>. Erea Solo is for solo operators on the go who just need a booking link and one place for everything. Erea is for any business that wants a real website, whether it's just you or a whole team. A solo barber who wants a website picks Erea; a solo barber who just wants a link in their Instagram bio picks Erea Solo.</p></details>
+    <details><summary>Can I pick how my booking link looks?</summary><p>Yes. Pick one of <a href="/styles#solo">5 ready-made styles</a>, and we put in your name, logo, colors and font.</p></details>
   </div>
 </div></section>
 
 <section style="padding-top:20px"><div class="wrap">
   <div class="cta solo">
-    <h2>Teach more. Text less.</h2>
+    <h2>Work more. Text less.</h2>
     <p>Try the demo on your phone in two minutes, get set up this week, or join the interest list and we'll reach out personally.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
       <a class="btn sec" style="background:#fff" href="/solo#join" data-stripe="https://buy.stripe.com/dRmdR91s2en5faS3EE3VC02">Get started</a>
@@ -217,14 +233,14 @@ a{color:var(--solo)}
     </div>
     <p style="margin:22px auto 0;font-size:15px">Or call or text <a href="tel:+19733780849" style="color:#fff;font-weight:700">(973) 378-0849</a> · email <a href="mailto:hello@ereaai.com" style="color:#fff;font-weight:700">hello@ereaai.com</a></p>
   </div>
-  <div class="studio-link"><p><b>Run a studio with staff?</b> Erea Studio has a front desk screen, staff check-in and bigger classes.</p><a class="btn sec" href="/">See Erea for studios →</a></div>
+  <div class="studio-link"><p><b>Want a real website, or have a team?</b> Erea is for any business that wants a real website, whether it's just you or a whole team.</p><a class="btn sec" href="/">See Erea →</a></div>
 </div></section>
 
 <section style="padding:0 0 10px"><div class="wrap"><p class="other-biz">Not a fitness business? Erea works for anyone who books people into time slots, and we love helping new ideas get off the ground. Say hi at <a href="mailto:hello@ereaai.com">hello@ereaai.com</a>.</p></div></section>
 
 <footer><div class="wrap">
-  <div><a class="logo" href="/solo" style="font-size:20px"><b style="font-weight:900">erea<span>.</span>ai</b><span class="solotag">Solo</span></a><div style="margin-top:6px">Booking texts for independent instructors. New Jersey.</div><div style="margin-top:4px"><a href="tel:+19733780849" style="margin:0">(973) 378-0849</a> · <a href="mailto:hello@ereaai.com" style="margin:0">hello@ereaai.com</a></div></div>
-  <div><a href="/">For studios</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/sms-opt-in">SMS opt-in</a><a href="/help">Help</a><div style="margin-top:8px">© 2026 Erea (DBA Erea AI)</div></div>
+  <div><a class="logo" href="/solo" style="font-size:20px"><b style="font-weight:900">erea<span>.</span>ai</b><span class="solotag">Solo</span></a><div style="margin-top:6px">Booking link and texts for solo operators on the go. New Jersey.</div><div style="margin-top:4px"><a href="tel:+19733780849" style="margin:0">(973) 378-0849</a> · <a href="mailto:hello@ereaai.com" style="margin:0">hello@ereaai.com</a></div></div>
+  <div><a href="/">Erea</a><a href="/styles">Styles</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/sms-opt-in">SMS opt-in</a><a href="/help">Help</a><div style="margin-top:8px">© 2026 Erea (DBA Erea AI)</div></div>
 </div></footer>
 <script src="/interest.js?v=20261109" defer></script>
 </body>

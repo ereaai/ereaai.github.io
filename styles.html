@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erea AI · Website looks and booking-link styles</title>
+<meta name="description" content="Browse the 5 website looks that come with Erea and the 5 booking-link styles that come with Erea Solo. Your colors, photos and logo go on top. We set it all up for you.">
+<meta property="og:title" content="Erea AI · Pick a look for your business">
+<meta property="og:description" content="5 website looks with Erea, 5 booking-link styles with Erea Solo. Your colors, your photos, set up for you.">
+<meta property="og:image" content="https://ereaai.com/icon-512.png">
+<meta name="theme-color" content="#FFD54F">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Manrope:wght@400;500;600&family=Anton&family=Barlow:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Work+Sans:wght@400;500;600&family=Oswald:wght@500&family=DM+Serif+Display&family=Nunito:wght@800&display=swap">
+<link rel="stylesheet" href="/site.css?v=20261111a">
+<style>
+/* ---------- page chrome ---------- */
+.shead{padding:56px 0 18px}
+.shead h1{font-size:clamp(40px,6vw,68px)}
+.shead h1 em{font-style:normal;color:var(--coral)}
+.shead .lead{font-size:19px;color:#4A4458;max-width:720px;margin:18px 0 0}
+.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.jump a{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-weight:700;font-size:14px;color:var(--navy);text-decoration:none}
+.jump a.solo{border-color:#137A6F;color:#137A6F}
+.goodto{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
+.goodto div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-size:14px;color:#4A4458}
+.goodto b{display:block;color:var(--navy);font-size:15px}
+@media(max-width:900px){.goodto{grid-template-columns:1fr 1fr}}@media(max-width:520px){.goodto{grid-template-columns:1fr}}
+.sec-title{padding:46px 0 6px}
+.sec-title p{color:var(--muted);margin:10px 0 0;max-width:700px}
+.looks section,.looks{padding:0}
+
+/* ---------- one look ---------- */
+.look{margin:26px 0 0;border-radius:26px;padding:34px;scroll-margin-top:80px;background:var(--L-bg);color:var(--L-ink);font-family:var(--L-body)}
+.look *{box-sizing:border-box}
+.look-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.look-k{display:block;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--L-muted);font-weight:600}
+.look-name{font-family:var(--L-head);font-weight:400;font-size:52px;line-height:1;color:var(--L-ink);letter-spacing:0;margin-top:6px}
+.look-desc{margin:0;max-width:520px;font-size:15px;line-height:1.6;color:var(--L-muted)}
+.look-desc b{color:var(--L-ink);font-weight:600}
+.site{margin-top:26px;overflow:hidden;background:var(--L-site);border:1px solid var(--L-line)}
+.s-nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 34px;border-bottom:1px solid var(--L-line)}
+.s-brand{font-family:var(--L-head);font-size:26px;line-height:1.1}
+.s-links{display:flex;gap:26px;align-items:center;font-size:13px}
+.s-btn{display:inline-block;background:var(--L-btn);color:var(--L-btnink);padding:12px 20px;font-size:13px;white-space:nowrap}
+.s-btn.big{padding:16px 26px;font-size:14px}
+.s-hero{display:grid;grid-template-columns:1fr 1fr}
+.s-copy{padding:54px 38px;display:flex;flex-direction:column;gap:20px;justify-content:center}
+.s-eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--L-accent)}
+.s-h1{font-family:var(--L-head);font-weight:400;letter-spacing:0;font-size:clamp(38px,4.6vw,60px);line-height:1.02;margin:0;color:var(--L-ink)}
+.s-copy p{margin:0;font-size:17px;line-height:1.6;color:var(--L-muted)}
+.s-ctas{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.s-link{font-size:15px;text-decoration:underline;text-underline-offset:3px}
+.s-photo{background:var(--L-photo);min-height:420px;display:flex;align-items:flex-end;padding:20px}
+.s-photo span{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--L-photoink)}
+.s-hero.flip .s-photo{order:-1}
+.look-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:28px;align-items:start}
+.kit-l{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--L-muted);font-weight:600;display:block;margin-bottom:12px}
+.sw{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sw div{font-size:13px}
+.sw i{display:block;height:54px;border:1px solid var(--L-line);margin-bottom:5px;border-radius:var(--L-swr,4px)}
+.type-a{display:block;font-family:var(--L-head);font-size:36px;line-height:1;margin-top:22px}
+.type-b{display:block;font-size:16px;margin-top:8px}
+.bk{background:var(--L-card);border:1px solid var(--L-line);padding:22px 20px;display:flex;flex-direction:column;gap:10px}
+.bk-t{font-family:var(--L-head);font-size:24px;text-align:center}
+.bk-d{font-size:13px;color:var(--L-muted);text-align:center;margin-bottom:4px}
+.slot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--L-line)}
+.slot b{display:block;font-weight:600}.slot small{font-size:13px;color:var(--L-muted)}
+.slot em{font-style:normal;font-size:12px;padding:5px 9px;white-space:nowrap;background:var(--L-pill);color:var(--L-pillink)}
+.slot.full{border-color:var(--L-ink)}
+.slot.full em{background:var(--L-full);color:var(--L-fullink)}
+.bk .s-btn{text-align:center;padding:14px;margin-top:6px}
+.txt{display:flex;flex-direction:column;gap:12px}
+.b-in{background:var(--L-bub);border:1px solid var(--L-line);padding:14px 16px;border-radius:18px 18px 18px 5px;font-size:15px;line-height:1.5;max-width:290px}
+.b-out{align-self:flex-end;background:var(--L-yes);color:var(--L-yesink);padding:10px 18px;border-radius:18px 18px 5px 18px;font-size:15px;font-weight:600}
+.look-foot{margin-top:26px;padding-top:18px;border-top:1px solid var(--L-line);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--L-muted)}
+.look-foot a{font-weight:700;color:var(--L-ink)}
+@media(max-width:860px){
+  .look{padding:22px 16px;border-radius:20px}
+  .look-name{font-size:42px}
+  .s-nav{padding:16px 18px}.s-links a,.s-links span:not(.s-btn){display:none}
+  .s-brand{font-size:20px}
+  .s-hero{grid-template-columns:1fr}.s-hero.flip .s-photo{order:0}
+  .s-copy{padding:30px 20px}.s-photo{min-height:200px}
+  .look-row{grid-template-columns:1fr}
+}
+
+/* A · Linen */
+.lk-linen{--L-bg:#F5EFE6;--L-site:#FBF8F3;--L-card:#FBF8F3;--L-ink:#2A2420;--L-muted:#6B6058;--L-accent:#9A6A4F;--L-line:#E6DDD1;--L-btn:#2A2420;--L-btnink:#FBF8F3;--L-photo:#E4D6C5;--L-photoink:#5E5148;--L-pill:#EFE5D8;--L-pillink:#2A2420;--L-full:#2A2420;--L-fullink:#FBF8F3;--L-bub:#FBF8F3;--L-yes:#9A6A4F;--L-yesink:#fff;--L-head:'Cormorant Garamond',serif;--L-body:'Jost',sans-serif}
+.lk-linen .site{border-radius:4px}
+.lk-linen .s-brand{letter-spacing:6px;text-transform:uppercase}
+.lk-linen .s-links{letter-spacing:2px;text-transform:uppercase}
+.lk-linen .s-btn{border-radius:999px;letter-spacing:2px;text-transform:uppercase}
+.lk-linen .s-h1{text-transform:uppercase;letter-spacing:1px}
+.lk-linen .bk{border-radius:26px}.lk-linen .bk-t{letter-spacing:3px;text-transform:uppercase}
+.lk-linen .slot{border-radius:14px}.lk-linen .slot em{border-radius:999px}
+.lk-linen .type-a{letter-spacing:2px;text-transform:uppercase}
+
+/* B · Daylight */
+.lk-daylight{--L-bg:#FFFFFF;--L-site:#F1F4EE;--L-card:#F1F4EE;--L-ink:#13221B;--L-muted:#56625B;--L-accent:#13221B;--L-line:#DCE3DA;--L-btn:#13221B;--L-btnink:#fff;--L-photo:#C9D8CC;--L-photoink:#2F4337;--L-pill:#DDF19A;--L-pillink:#13221B;--L-full:#FDE7D9;--L-fullink:#7A3A12;--L-bub:#F1F4EE;--L-yes:#DDF19A;--L-yesink:#13221B;--L-head:'Instrument Serif',serif;--L-body:'Inter Tight',sans-serif;--L-swr:14px}
+.lk-daylight{border:1px solid #E3E9E1}
+.lk-daylight .site{border-radius:28px;border:0}
+.lk-daylight .s-nav{border-bottom:0}
+.lk-daylight .s-links{font-size:15px;font-weight:500}
+.lk-daylight .s-btn{border-radius:14px;font-weight:500;font-size:15px}
+.lk-daylight .s-hero{gap:24px;padding:0 30px 30px}
+.lk-daylight .s-copy{padding:30px 8px}
+.lk-daylight .s-eyebrow{align-self:flex-start;letter-spacing:0;text-transform:none;font-size:14px;font-weight:500;background:#DDF19A;padding:7px 13px;border-radius:999px}
+.lk-daylight .s-h1 i{color:#4E705B}
+.lk-daylight .s-photo{border-radius:22px}
+.lk-daylight .s-photo span{letter-spacing:0;text-transform:none;font-size:13px;font-weight:500}
+.lk-daylight .s-link{text-decoration:none;background:#fff;padding:15px 22px;border-radius:14px;font-weight:500}
+.lk-daylight .bk{border-radius:28px;border:0}
+.lk-daylight .slot{background:#fff;border:0;border-radius:16px}.lk-daylight .slot.full{outline:2px solid #13221B}
+.lk-daylight .slot em{border-radius:999px;font-weight:600}
+.lk-daylight .b-in{border:0;border-radius:22px 22px 22px 6px}
+.lk-daylight .bk-t{font-size:28px}
+@media(max-width:860px){.lk-daylight .s-hero{padding:0 14px 14px}}
+
+/* C · Evening */
+.lk-evening{--L-bg:#171614;--L-site:#211F1C;--L-card:#211F1C;--L-ink:#F1EBE1;--L-muted:#B5AB9C;--L-accent:#D4B98C;--L-line:#3A3631;--L-btn:#D4B98C;--L-btnink:#171614;--L-photo:#33302B;--L-photoink:#C9BFB0;--L-pill:transparent;--L-pillink:#D4B98C;--L-full:transparent;--L-fullink:#F1EBE1;--L-bub:#2A2723;--L-yes:#D4B98C;--L-yesink:#171614;--L-head:'Bodoni Moda',serif;--L-body:'Manrope',sans-serif;--L-swr:0}
+.lk-evening .s-brand{letter-spacing:8px}
+.lk-evening .s-links{letter-spacing:2px;text-transform:uppercase}
+.lk-evening .s-btn{letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.lk-evening .slot{border:0;border-bottom:1px solid #3A3631;padding:13px 4px}
+.lk-evening .slot.full{border-color:#3A3631}.lk-evening .slot.full em{border:1px solid #D4B98C}
+.lk-evening .slot em{letter-spacing:1px;text-transform:uppercase}
+.lk-evening .bk-d{letter-spacing:2px;text-transform:uppercase}
+.lk-evening .b-in{border:0}
+
+/* D · Forge */
+.lk-forge{--L-bg:#0E0E0E;--L-site:#161616;--L-card:#161616;--L-ink:#F4F4F2;--L-muted:#A9A9A4;--L-accent:#FF5A1F;--L-line:#2E2E2E;--L-btn:#FF5A1F;--L-btnink:#0E0E0E;--L-photo:#2A2A2A;--L-photoink:#C9C9C4;--L-pill:#F4F4F2;--L-pillink:#0E0E0E;--L-full:#FF5A1F;--L-fullink:#0E0E0E;--L-bub:#222;--L-yes:#FF5A1F;--L-yesink:#0E0E0E;--L-head:'Anton',sans-serif;--L-body:'Barlow',sans-serif;--L-swr:0}
+.lk-forge .look-name,.lk-forge .s-brand,.lk-forge .s-h1,.lk-forge .bk-t,.lk-forge .type-a{text-transform:uppercase}
+.lk-forge .s-h1{font-size:clamp(46px,6vw,88px);line-height:.92}
+.lk-forge .s-nav{border-bottom:3px solid #FF5A1F}
+.lk-forge .s-links,.lk-forge .s-btn{font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:14px}
+.lk-forge .s-eyebrow{font-weight:700;font-size:13px}
+.lk-forge .s-link{text-decoration:none;border:2px solid #F4F4F2;padding:14px 22px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.lk-forge .s-photo span{font-weight:600}
+.lk-forge .bk{border-top:4px solid #FF5A1F}
+.lk-forge .bk-t{text-align:left;font-size:28px}.lk-forge .bk-d{text-align:left}
+.lk-forge .slot{background:#222;border:0}.lk-forge .slot.full{outline:2px solid #FF5A1F}
+.lk-forge .slot b{text-transform:uppercase;font-weight:700}.lk-forge .slot em{font-weight:700;text-transform:uppercase}
+.lk-forge .bk .s-btn{font-size:15px}
+.lk-forge .b-in{border:0;border-radius:16px 16px 16px 4px}
+
+/* E · Crown */
+.lk-crown{--L-bg:#F2EADB;--L-site:#0F1B2D;--L-card:#FFFDF8;--L-ink:#0F1B2D;--L-muted:#4F5868;--L-accent:#D2A85A;--L-line:#D6CBB6;--L-btn:#B8893B;--L-btnink:#0F1B2D;--L-photo:#1D2C45;--L-photoink:#D9CFBD;--L-pill:#E8DCC2;--L-pillink:#0F1B2D;--L-full:#7A2E2A;--L-fullink:#fff;--L-bub:#FFFDF8;--L-yes:#0F1B2D;--L-yesink:#F2EADB;--L-head:'Playfair Display',serif;--L-body:'Work Sans',sans-serif;--L-swr:0}
+.lk-crown .look-name,.lk-crown .s-brand,.lk-crown .bk-t,.lk-crown .type-a{font-weight:900}
+.lk-crown .site{border:0;color:#F2EADB}
+.lk-crown .site:before{content:"";display:block;height:12px;background:repeating-linear-gradient(135deg,#7A2E2A 0 14px,#F2EADB 14px 28px,#0F1B2D 28px 42px,#F2EADB 42px 56px)}
+.lk-crown .s-nav{border-bottom:1px solid #2A3A55}
+.lk-crown .s-links{font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.lk-crown .s-btn{font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.lk-crown .s-h1{font-weight:900;color:#F2EADB}.lk-crown .s-h1 i{font-weight:700;color:#D2A85A}
+.lk-crown .s-copy p{color:#D9CFBD}
+.lk-crown .s-eyebrow{font-weight:600}
+.lk-crown .s-photo span{font-weight:600}
+.lk-crown .bk{border:2px solid #0F1B2D}
+.lk-crown .bk .s-btn{background:#0F1B2D;color:#F2EADB}
+.lk-crown .bk-d{letter-spacing:2px;text-transform:uppercase}
+.lk-crown .slot{border:0;border-bottom:1px dashed #B9AE9A;padding:12px 4px}
+.lk-crown .slot.full{border-color:#B9AE9A}.lk-crown .slot em{font-weight:600}
+.lk-crown .b-out{font-weight:600}
+
+/* ---------- Solo phones ---------- */
+.solo-wrap{margin-top:26px;background:#F7F6F3;border:1px solid #E7E3DB;border-radius:26px;padding:30px 26px;scroll-margin-top:80px}
+.sp-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px}
+@media(max-width:1100px){.sp-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px}.sp-item{flex:0 0 260px;scroll-snap-align:start}}
+.sp-item{margin:0;display:flex;flex-direction:column;gap:12px}
+.sp-item figcaption b{display:block;font-size:18px;color:#1A1A1A}
+.sp-item figcaption span{font-size:14px;color:#5C5A55}
+.sp-phone{aspect-ratio:390/780;border-radius:38px;border:8px solid #1A1A1A;background:var(--bg);color:var(--ink);padding:28px 14px 16px;display:flex;flex-direction:column;gap:11px;overflow:hidden;font-family:'DM Sans',sans-serif}
+.sp-top{display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center}
+.sp-logo{width:50px;height:50px;border-radius:var(--lr);background:var(--bb);color:var(--bt);display:grid;place-items:center;font-family:var(--f);font-size:22px}
+.sp-name{font-family:var(--f);font-size:calc(var(--ns) * .78);line-height:1.05;letter-spacing:var(--tr);text-transform:var(--tc)}
+.sp-tag{font-size:12px;color:var(--muted)}
+.sp-days{display:flex;gap:6px;justify-content:center}
+.sp-days span{font-size:11px;padding:7px 9px;border-radius:var(--r);background:var(--card)}
+.sp-days span.on{background:var(--bb);color:var(--bt);font-weight:600}
+.sp-slot{background:var(--card);border-radius:var(--r);padding:11px 13px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.sp-slot b{display:block;font-size:13px;font-weight:600}.sp-slot span{font-size:11px;color:var(--muted)}
+.sp-slot em{font-style:normal;font-size:10px;font-weight:600;padding:5px 8px;border-radius:999px;background:var(--pb);color:var(--pt);white-space:nowrap}
+.sp-btn{margin-top:auto;background:var(--bb);color:var(--bt);text-align:center;padding:13px;border-radius:var(--r);font-size:14px;font-weight:600}
+.sp-by{font-size:10px;text-align:center;color:var(--muted)}
+.solo-note{margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:#5C5A55;font-size:15px}
+
+.pickcta{margin-top:50px}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="/"><img src="/icon-192.png" alt="" width="30" height="30" style="border-radius:8px"><b style="font-weight:900">erea<span>.</span>ai</b></a>
+  <nav>
+    <a href="/#plans">Plans</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/styles">Styles</a>
+    <a href="/solo" style="color:#137A6F">Erea Solo</a>
+    <a class="btn pri" href="/#join" data-founding="79">Claim a founding spot</a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+  <section class="shead">
+    <div class="eyebrow">Styles</div>
+    <h1 style="margin-top:12px">Pick a look. <em>We build it for you.</em></h1>
+    <p class="lead">Every Erea business gets a real website in one of the 5 looks below. Erea Solo gets a booking link in one of 5 ready-made styles. The names and photos here are samples. Yours get your name, logo, photos and prices.</p>
+    <div class="jump">
+      <a href="#linen">A · Linen</a><a href="#daylight">B · Daylight</a><a href="#evening">C · Evening</a><a href="#forge">D · Forge</a><a href="#crown">E · Crown</a><a class="solo" href="#solo">Erea Solo styles</a>
+    </div>
+    <div class="goodto">
+      <div><b>Your own colors</b>Any look can use your colors. Same layout, your brand.</div>
+      <div><b>Your photos and videos</b>Add your own photos and a short looping clip at the top.</div>
+      <div><b>A free web address</b>Like yourname.ereaai.com, included with Erea.</div>
+      <div><b>Your own domain</b>Already have one? We connect it free. Or $5/mo and we get yourname.com for you.</div>
+    </div>
+  </section>
+
+  <div class="sec-title">
+    <div class="eyebrow">Erea · website looks</div>
+    <h2 style="margin-top:10px">5 looks for your website</h2>
+    <p>For any business that wants a real website, whether it's just you or a whole team. Your custom site is set up as part of onboarding.</p>
+  </div>
+
+  <!-- A · Linen -->
+  <article class="look lk-linen" id="linen">
+    <div class="look-head">
+      <div><span class="look-k">Look A</span><div class="look-name">Linen</div></div>
+      <p class="look-desc">Warm sand and soft clay, big spaced-out serif headings, lots of breathing room. <b>Best for:</b> Pilates, yoga, barre and wellness studios.</p>
+    </div>
+    <div class="site">
+      <div class="s-nav"><span class="s-brand">Willow Studio</span><div class="s-links"><span>Classes</span><span>Pricing</span><span>Our story</span><span class="s-btn">Book a class</span></div></div>
+      <div class="s-hero">
+        <div class="s-copy">
+          <span class="s-eyebrow">Pilates &amp; barre · Montclair, NJ</span>
+          <h3 class="s-h1">Move slow. Feel strong.</h3>
+          <p>Small classes, real attention. Book your spot in seconds. If a class is full, join the waitlist and we'll text you when a spot opens.</p>
+          <div class="s-ctas"><span class="s-btn big">Book a class</span><span class="s-link">See the schedule</span></div>
+        </div>
+        <div class="s-photo"><span>Your photo: soft daylight, real people</span></div>
+      </div>
+    </div>
+    <div class="look-row">
+      <div><span class="kit-l">Colors</span>
+        <div class="sw"><div><i style="background:#F5EFE6"></i>Sand</div><div><i style="background:#E4D6C5"></i>Oat</div><div><i style="background:#9A6A4F"></i>Clay</div><div><i style="background:#2A2420"></i>Espresso</div></div>
+        <span class="type-a">Cormorant</span><span class="type-b">Jost for everything else.</span>
+      </div>
+      <div class="bk"><div class="bk-t">Willow Studio</div><div class="bk-d">Thursday · pick a class</div>
+        <div class="slot"><div><b>Mat Pilates</b><small>9:00 AM · 50 min</small></div><em>2 spots</em></div>
+        <div class="slot full"><div><b>Sculpt</b><small>12:15 PM · 45 min</small></div><em>Full · waitlist</em></div>
+        <div class="slot"><div><b>Restore</b><small>6:30 PM · 60 min</small></div><em>4 spots</em></div>
+        <span class="s-btn">Join the waitlist</span>
+      </div>
+      <div class="txt"><span class="kit-l">The text</span>
+        <div class="b-in">A spot just opened in Sculpt at 12:15 PM today. Reply YES to claim it.</div>
+        <div class="b-out">YES</div>
+        <div class="b-in">You're in! See you at 12:15.</div>
+      </div>
+    </div>
+    <div class="look-foot"><span>Sample business: Willow Studio</span><a href="/#join" data-founding="79">I want this look →</a></div>
+  </article>
+
+  <!-- B · Daylight -->
+  <article class="look lk-daylight" id="daylight">
+    <div class="look-head">
+      <div><span class="look-k">Look B</span><div class="look-name">Daylight</div></div>
+      <p class="look-desc">Bright white, soft sage and a fresh lime pop. Rounded and friendly. <b>Best for:</b> yoga, cycle, salons, dance and lessons.</p>
+    </div>
+    <div class="site">
+      <div class="s-nav"><span class="s-brand">Willow Studio</span><div class="s-links"><span>Classes</span><span>Memberships</span><span>About</span><span class="s-btn">Book a class</span></div></div>
+      <div class="s-hero">
+        <div class="s-copy">
+          <span class="s-eyebrow">Now booking: Saturday morning flow</span>
+          <h3 class="s-h1">Strong body, <i>clear head.</i></h3>
+          <p>Classes for every level, six days a week. Book in a few taps, and if a class is full, we'll text you the moment a spot opens.</p>
+          <div class="s-ctas"><span class="s-btn big">Book a class</span><span class="s-link">View schedule</span></div>
+        </div>
+        <div class="s-photo"><span>Your photo: trainer and client mid-session</span></div>
+      </div>
+    </div>
+    <div class="look-row">
+      <div><span class="kit-l">Colors</span>
+        <div class="sw"><div><i style="background:#FFFFFF"></i>White</div><div><i style="background:#F1F4EE"></i>Mist</div><div><i style="background:#DDF19A"></i>Lime</div><div><i style="background:#13221B"></i>Forest ink</div></div>
+        <span class="type-a">Instrument <i>Serif</i></span><span class="type-b">Inter Tight for everything else.</span>
+      </div>
+      <div class="bk"><div class="bk-t">Willow Studio</div><div class="bk-d">Thursday</div>
+        <div class="slot"><div><b>Mat Pilates</b><small>9:00 AM · 50 min</small></div><em>2 spots</em></div>
+        <div class="slot full"><div><b>Sculpt</b><small>12:15 PM · 45 min</small></div><em>Full · waitlist</em></div>
+        <div class="slot"><div><b>Restore</b><small>6:30 PM · 60 min</small></div><em>4 spots</em></div>
+        <span class="s-btn">Join the waitlist</span>
+      </div>
+      <div class="txt"><span class="kit-l">The text</span>
+        <div class="b-in">A spot just opened in Sculpt at 12:15 PM today. Reply YES to claim it.</div>
+        <div class="b-out">YES</div>
+        <div class="b-in">You're in! See you at 12:15.</div>
+      </div>
+    </div>
+    <div class="look-foot"><span>Sample business: Willow Studio</span><a href="/#join" data-founding="79">I want this look →</a></div>
+  </article>
+
+  <!-- C · Evening -->
+  <article class="look lk-evening" id="evening">
+    <div class="look-head">
+      <div><span class="look-k">Look C</span><div class="look-name">Evening</div></div>
+      <p class="look-desc">Deep charcoal with champagne gold, a fashion-magazine serif and sharp edges. Feels high-end. <b>Best for:</b> boutique strength, lash and brow studios.</p>
+    </div>
+    <div class="site">
+      <div class="s-nav"><span class="s-brand">WILLOW</span><div class="s-links"><span>Classes</span><span>Pricing</span><span>Visit</span><span class="s-btn">Book now</span></div></div>
+      <div class="s-hero flip">
+        <div class="s-copy">
+          <span class="s-eyebrow">Boutique strength · Small groups</span>
+          <h3 class="s-h1">Train in <i>good company.</i></h3>
+          <p>Small-group and private sessions, never more than eight people. Book online, and we'll text you when a full class opens up.</p>
+          <div class="s-ctas"><span class="s-btn big">Book now</span><span class="s-link">See the schedule</span></div>
+        </div>
+        <div class="s-photo"><span>Your photo: warm low light, close-up</span></div>
+      </div>
+    </div>
+    <div class="look-row">
+      <div><span class="kit-l">Colors</span>
+        <div class="sw"><div><i style="background:#171614"></i>Charcoal</div><div><i style="background:#33302B"></i>Smoke</div><div><i style="background:#D4B98C"></i>Champagne</div><div><i style="background:#F1EBE1"></i>Ivory</div></div>
+        <span class="type-a">Bodoni <i>Moda</i></span><span class="type-b">Manrope for everything else.</span>
+      </div>
+      <div class="bk"><div class="bk-t">Willow Studio</div><div class="bk-d">Thursday</div>
+        <div class="slot"><div><b>Mat Pilates</b><small>9:00 AM · 50 min</small></div><em>2 spots</em></div>
+        <div class="slot full"><div><b>Sculpt</b><small>12:15 PM · 45 min</small></div><em>Waitlist</em></div>
+        <div class="slot"><div><b>Restore</b><small>6:30 PM · 60 min</small></div><em>4 spots</em></div>
+        <span class="s-btn">Join the waitlist</span>
+      </div>
+      <div class="txt"><span class="kit-l">The text</span>
+        <div class="b-in">A spot just opened in Sculpt at 12:15 PM today. Reply YES to claim it.</div>
+        <div class="b-out">YES</div>
+        <div class="b-in">You're in! See you at 12:15.</div>
+      </div>
+    </div>
+    <div class="look-foot"><span>Sample business: Willow</span><a href="/#join" data-founding="79">I want this look →</a></div>
+  </article>
+
+  <!-- D · Forge -->
+  <article class="look lk-forge" id="forge">
+    <div class="look-head">
+      <div><span class="look-k">Look D</span><div class="look-name">Forge</div></div>
+      <p class="look-desc">Black, steel and safety orange. Huge tall capital letters and hard edges. <b>Best for:</b> gyms, strength, boxing and bootcamps.</p>
+    </div>
+    <div class="site">
+      <div class="s-nav"><span class="s-brand">Forge Strength Club</span><div class="s-links"><span>Classes</span><span>Coaches</span><span>Memberships</span><span class="s-btn">Book a class</span></div></div>
+      <div class="s-hero">
+        <div class="s-copy">
+          <span class="s-eyebrow">Strength · Conditioning · Newark, NJ</span>
+          <h3 class="s-h1">Show up. Get stronger.</h3>
+          <p>Coached classes from 5:30 AM. Grab your spot online. If the class is full, get on the list and we'll text you when one opens.</p>
+          <div class="s-ctas"><span class="s-btn big">Book a class</span><span class="s-link">See the schedule</span></div>
+        </div>
+        <div class="s-photo"><span>Your photo: barbell, chalk, black and white</span></div>
+      </div>
+    </div>
+    <div class="look-row">
+      <div><span class="kit-l">Colors</span>
+        <div class="sw"><div><i style="background:#0E0E0E"></i>Black</div><div><i style="background:#2A2A2A"></i>Steel</div><div><i style="background:#FF5A1F"></i>Safety orange</div><div><i style="background:#F4F4F2"></i>Chalk</div></div>
+        <span class="type-a">Anton</span><span class="type-b">Barlow for everything else.</span>
+      </div>
+      <div class="bk"><div class="bk-t">Thursday</div><div class="bk-d">Pick a class</div>
+        <div class="slot"><div><b>Strength 101</b><small>6:00 AM · Coach Jay</small></div><em>4 spots</em></div>
+        <div class="slot full"><div><b>HIIT Conditioning</b><small>12:00 PM · Coach Nia</small></div><em>Full · waitlist</em></div>
+        <div class="slot"><div><b>Open Gym + Coach</b><small>6:30 PM · Coach Jay</small></div><em>8 spots</em></div>
+        <span class="s-btn">Join the waitlist</span>
+      </div>
+      <div class="txt"><span class="kit-l">The text</span>
+        <div class="b-in">A spot just opened in HIIT Conditioning at 12:00 PM today. Reply YES to claim it.</div>
+        <div class="b-out">YES</div>
+        <div class="b-in">You're in! See you at 12:00.</div>
+      </div>
+    </div>
+    <div class="look-foot"><span>Sample business: Forge Strength Club</span><a href="/#join" data-founding="79">I want this look →</a></div>
+  </article>
+
+  <!-- E · Crown -->
+  <article class="look lk-crown" id="crown">
+    <div class="look-head">
+      <div><span class="look-k">Look E</span><div class="look-name">Crown</div></div>
+      <p class="look-desc">Classic barbershop: deep navy, cream, brass and oxblood, a bold old-school serif and pole stripes. <b>Best for:</b> barbers, shave shops and grooming.</p>
+    </div>
+    <div class="site">
+      <div class="s-nav"><span class="s-brand">Crown Line Barber Co.</span><div class="s-links"><span>Services</span><span>Barbers</span><span>Visit</span><span class="s-btn">Book a cut</span></div></div>
+      <div class="s-hero flip">
+        <div class="s-copy">
+          <span class="s-eyebrow">Cuts · Fades · Hot towel shaves</span>
+          <h3 class="s-h1">Look sharp. <i>Book in seconds.</i></h3>
+          <p>Pick your barber and your time. Chair booked up? Hop on the waitlist and we'll text you when a spot opens.</p>
+          <div class="s-ctas"><span class="s-btn big">Book a cut</span><span class="s-link">See prices</span></div>
+        </div>
+        <div class="s-photo"><span>Your photo: chairs, warm light, a fresh fade</span></div>
+      </div>
+    </div>
+    <div class="look-row">
+      <div><span class="kit-l">Colors</span>
+        <div class="sw"><div><i style="background:#0F1B2D"></i>Navy</div><div><i style="background:#F2EADB"></i>Cream</div><div><i style="background:#B8893B"></i>Brass</div><div><i style="background:#7A2E2A"></i>Oxblood</div></div>
+        <span class="type-a">Playfair <i style="font-weight:700">Display</i></span><span class="type-b">Work Sans for everything else.</span>
+      </div>
+      <div class="bk"><div class="bk-t">Book with Andre</div><div class="bk-d">Thursday</div>
+        <div class="slot"><div><b>Haircut</b><small>10:00 AM · 45 min</small></div><em>Open</em></div>
+        <div class="slot full"><div><b>Cut + beard</b><small>1:15 PM · 60 min</small></div><em>Full · waitlist</em></div>
+        <div class="slot"><div><b>Kids cut</b><small>3:30 PM · 30 min</small></div><em>Open</em></div>
+        <span class="s-btn">Join the waitlist</span>
+      </div>
+      <div class="txt"><span class="kit-l">The text</span>
+        <div class="b-in">A 1:15 PM spot just opened with Andre today. Reply YES to claim it.</div>
+        <div class="b-out">YES</div>
+        <div class="b-in">You're in! See you at 1:15.</div>
+      </div>
+    </div>
+    <div class="look-foot"><span>Sample business: Crown Line Barber Co.</span><a href="/#join" data-founding="79">I want this look →</a></div>
+  </article>
+
+  <div class="sec-title" style="padding-top:64px">
+    <div class="eyebrow" style="color:#137A6F">Erea Solo · booking-link styles</div>
+    <h2 style="margin-top:10px">5 styles for your booking link</h2>
+    <p>For solo operators on the go who just need a booking link and one place for everything. Pick a style, then we swap in your name, logo, colors and font. Put the link in your bio.</p>
+  </div>
+  <div class="solo-wrap" id="solo">
+    <div class="sp-grid">
+  <figure class="sp-item">
+    <figcaption><b>Soft Clay</b><span>Pilates, yoga, massage</span></figcaption>
+    <div class="sp-phone" style="--bg:#F4EDE4;--card:#FFFFFF;--ink:#3A2E27;--muted:#6E6058;--bb:#3A2E27;--bt:#F4EDE4;--pb:#EBDDCF;--pt:#3A2E27;--f:'Cormorant Garamond',serif;--ns:30px;--tr:3px;--tc:uppercase;--r:999px;--lr:50%">
+      <div class="sp-top"><div class="sp-logo">A</div><div class="sp-name">Ama Pilates</div><div class="sp-tag">Private &amp; duet reformer sessions</div></div>
+      <div class="sp-days"><span>Thu 19</span><span class="on">Fri 20</span><span>Sat 21</span></div>
+      <div class="sp-slot"><div><b>Private session</b><span>8:00 AM · 55 min</span></div><em>Open</em></div><div class="sp-slot"><div><b>Duet session</b><span>11:30 AM · 55 min</span></div><em>1 left</em></div><div class="sp-slot"><div><b>Private session</b><span>5:00 PM · 55 min</span></div><em>Open</em></div>
+      <div class="sp-btn">Book my time</div>
+      <div class="sp-by">Booking by Erea Solo</div>
+    </div>
+  </figure>
+  <figure class="sp-item">
+    <figcaption><b>Fresh Mint</b><span>Personal trainers, coaches</span></figcaption>
+    <div class="sp-phone" style="--bg:#EEF7F2;--card:#FFFFFF;--ink:#0F2A1F;--muted:#4B6358;--bb:#1F7A55;--bt:#FFFFFF;--pb:#D3EFE0;--pt:#0F2A1F;--f:'Archivo',sans-serif;--ns:28px;--tr:0px;--tc:none;--r:14px;--lr:16px">
+      <div class="sp-top"><div class="sp-logo">D</div><div class="sp-name">Coach Dre Fitness</div><div class="sp-tag">1-on-1 strength training</div></div>
+      <div class="sp-days"><span>Thu 19</span><span class="on">Fri 20</span><span>Sat 21</span></div>
+      <div class="sp-slot"><div><b>Strength 1-on-1</b><span>6:00 AM · 45 min</span></div><em>Open</em></div><div class="sp-slot"><div><b>Small group</b><span>12:00 PM · 45 min</span></div><em>3 left</em></div><div class="sp-slot"><div><b>Strength 1-on-1</b><span>7:00 PM · 45 min</span></div><em>Open</em></div>
+      <div class="sp-btn">Book my time</div>
+      <div class="sp-by">Booking by Erea Solo</div>
+    </div>
+  </figure>
+  <figure class="sp-item">
+    <figcaption><b>Studio Noir</b><span>Barbers, stylists</span></figcaption>
+    <div class="sp-phone" style="--bg:#121212;--card:#1F1F1F;--ink:#F5F5F5;--muted:#ABABAB;--bb:#F5F5F5;--bt:#121212;--pb:#2E2E2E;--pt:#F5F5F5;--f:'Oswald',sans-serif;--ns:32px;--tr:2px;--tc:uppercase;--r:6px;--lr:6px">
+      <div class="sp-top"><div class="sp-logo">M</div><div class="sp-name">Fades by Marcus</div><div class="sp-tag">Cuts, fades and beard work</div></div>
+      <div class="sp-days"><span>Thu 19</span><span class="on">Fri 20</span><span>Sat 21</span></div>
+      <div class="sp-slot"><div><b>Fade</b><span>10:00 AM · 40 min</span></div><em>Open</em></div><div class="sp-slot"><div><b>Cut + beard</b><span>1:20 PM · 60 min</span></div><em>Open</em></div><div class="sp-slot"><div><b>Line-up</b><span>4:00 PM · 20 min</span></div><em>Last one</em></div>
+      <div class="sp-btn">Book my time</div>
+      <div class="sp-by">Booking by Erea Solo</div>
+    </div>
+  </figure>
+  <figure class="sp-item">
+    <figcaption><b>Blush</b><span>Lash, brow, nails, makeup</span></figcaption>
+    <div class="sp-phone" style="--bg:#FBEFEF;--card:#FFFFFF;--ink:#3D1F2A;--muted:#7A5662;--bb:#3D1F2A;--bt:#FFFFFF;--pb:#F6D9DE;--pt:#3D1F2A;--f:'DM Serif Display',serif;--ns:28px;--tr:0px;--tc:none;--r:18px;--lr:50%">
+      <div class="sp-top"><div class="sp-logo">T</div><div class="sp-name">The Lash Room by Tia</div><div class="sp-tag">Lash sets, fills and lifts</div></div>
+      <div class="sp-days"><span>Thu 19</span><span class="on">Fri 20</span><span>Sat 21</span></div>
+      <div class="sp-slot"><div><b>Classic full set</b><span>9:30 AM · 2 hr</span></div><em>Open</em></div><div class="sp-slot"><div><b>Lash fill</b><span>1:00 PM · 1 hr</span></div><em>Open</em></div><div class="sp-slot"><div><b>Lash lift</b><span>3:30 PM · 1 hr</span></div><em>Waitlist</em></div>
+      <div class="sp-btn">Book my time</div>
+      <div class="sp-by">Booking by Erea Solo</div>
+    </div>
+  </figure>
+  <figure class="sp-item">
+    <figcaption><b>Sky</b><span>Tutors, music &amp; lessons</span></figcaption>
+    <div class="sp-phone" style="--bg:#EEF4FB;--card:#FFFFFF;--ink:#12263F;--muted:#4A5D75;--bb:#2457A6;--bt:#FFFFFF;--pb:#DCE8F7;--pt:#12263F;--f:'Nunito',sans-serif;--ns:28px;--tr:0px;--tc:none;--r:16px;--lr:18px">
+      <div class="sp-top"><div class="sp-logo">R</div><div class="sp-name">Math with Ms. Ruiz</div><div class="sp-tag">Algebra &amp; SAT prep, grades 6–12</div></div>
+      <div class="sp-days"><span>Thu 19</span><span class="on">Fri 20</span><span>Sat 21</span></div>
+      <div class="sp-slot"><div><b>Algebra lesson</b><span>3:30 PM · 60 min</span></div><em>Open</em></div><div class="sp-slot"><div><b>SAT math prep</b><span>5:00 PM · 60 min</span></div><em>1 left</em></div><div class="sp-slot"><div><b>Homework help</b><span>6:30 PM · 30 min</span></div><em>Open</em></div>
+      <div class="sp-btn">Book my time</div>
+      <div class="sp-by">Booking by Erea Solo</div>
+    </div>
+  </figure>
+
+    </div>
+    <div class="solo-note"><span>Names are made-up samples. Every style keeps the same layout, so nothing breaks when your colors go in.</span><a class="btn pri" style="background:#137A6F" href="/solo">See Erea Solo · $39/mo →</a></div>
+  </div>
+
+  <section class="pickcta" style="padding-bottom:20px"><div class="cta">
+    <h2>Found your look?</h2>
+    <p>Tell us which one. We set up your site, your booking page and your texts for you. The first 15 businesses keep $79 a month for life.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a class="btn sec" style="background:#fff" href="/#join" data-founding="79">Claim a founding spot ($79/mo)</a>
+      <a class="btn sec" style="background:transparent;color:#fff" href="/#plans">Which plan is for me?</a>
+    </div>
+    <p style="margin:22px auto 0;font-size:15px">Or call or text <a href="tel:+19733780849" style="color:#fff;font-weight:700">(973) 378-0849</a> · email <a href="mailto:hello@ereaai.com" style="color:#fff;font-weight:700">hello@ereaai.com</a></p>
+  </div></section>
+</div>
+
+<footer><div class="wrap">
+  <div><a class="logo" href="/" style="font-size:20px"><b style="font-weight:900">erea<span>.</span>ai</b></a><div style="margin-top:6px">Booking, reminders and refills by text for small businesses. New Jersey &amp; New York.</div><div style="margin-top:4px"><a href="tel:+19733780849" style="margin:0">(973) 378-0849</a> · <a href="mailto:hello@ereaai.com" style="margin:0">hello@ereaai.com</a></div></div>
+  <div><a href="/">Erea</a><a href="/solo">Erea Solo</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/sms-opt-in">SMS opt-in</a><a href="/help">Help</a><div style="margin-top:8px">© 2026 Erea (DBA Erea AI)</div></div>
+</div></footer>
+</body>
+</html>
