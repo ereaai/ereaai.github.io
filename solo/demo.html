@@ -14,6 +14,43 @@
 <link rel="stylesheet" href="/site.css?v=20261111b">
 <link rel="stylesheet" href="/demo.css?v=20261109b">
 <style>:root{--acc:#137A6F} .intro h1 em{font-style:normal;color:#137A6F} .btn.pri{background:#137A6F} .btn.pri:hover{background:#0E5A52} .logo span{color:#137A6F}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Oswald:wght@500&family=DM+Serif+Display&family=Nunito:wght@600&display=swap">
+<style>
+.sstyles{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-weight:700;color:var(--navy);font-size:15px}
+.sbtn{font:inherit;font-size:14px;font-weight:700;display:inline-flex;gap:7px;align-items:center;padding:7px 12px;border-radius:999px;border:2px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}
+.sbtn i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
+.sbtn[aria-pressed=true]{border-color:var(--navy);background:var(--navy);color:#fff}
+body[data-sstyle=clay] #client,body[data-sstyle=clay] #owner{--acc:#3A2E27;--acct:#F4EDE4;--navy:#3A2E27;--ink:#3A2E27;--muted:#6E6058;--line:#E4D6C8;--cream:#F4EDE4;--mint:#EBDDCF;--teal:#3A2E27;color:#3A2E27}
+body[data-sstyle=clay] #client{background:#F4EDE4}body[data-sstyle=clay] #owner{background:#FFFFFF}
+body[data-sstyle=clay] #client .cls,body[data-sstyle=clay] #client .chip,body[data-sstyle=clay] #client .sheet input,body[data-sstyle=clay] #owner .ci,body[data-sstyle=clay] #owner .add input{background:#FFFFFF;color:#3A2E27}
+body[data-sstyle=clay] #client .big,body[data-sstyle=clay] #client .chip.on,body[data-sstyle=clay] #client .cs.mine,body[data-sstyle=clay] #owner .ci.on,body[data-sstyle=clay] #owner .add button,body[data-sstyle=clay] #owner .otabs button[aria-selected=true]{background:#3A2E27;border-color:#3A2E27;color:#F4EDE4}
+body[data-sstyle=clay] #owner .activity{background:#3A2E27}body[data-sstyle=clay] #owner .ci{border-color:#3A2E27}body[data-sstyle=clay] #client .back{color:#3A2E27}
+body[data-sstyle=clay] #client .ph-name,body[data-sstyle=clay] #owner .o-name{font-family:'Cormorant Garamond',serif;font-weight:600;text-transform:uppercase;letter-spacing:2px}
+body[data-sstyle=mint] #client,body[data-sstyle=mint] #owner{--acc:#1F7A55;--acct:#FFFFFF;--navy:#0F2A1F;--ink:#0F2A1F;--muted:#4B6358;--line:#CFE5D9;--cream:#EEF7F2;--mint:#D3EFE0;--teal:#0F2A1F;color:#0F2A1F}
+body[data-sstyle=mint] #client{background:#EEF7F2}body[data-sstyle=mint] #owner{background:#FFFFFF}
+body[data-sstyle=mint] #client .cls,body[data-sstyle=mint] #client .chip,body[data-sstyle=mint] #client .sheet input,body[data-sstyle=mint] #owner .ci,body[data-sstyle=mint] #owner .add input{background:#FFFFFF;color:#0F2A1F}
+body[data-sstyle=mint] #client .big,body[data-sstyle=mint] #client .chip.on,body[data-sstyle=mint] #client .cs.mine,body[data-sstyle=mint] #owner .ci.on,body[data-sstyle=mint] #owner .add button,body[data-sstyle=mint] #owner .otabs button[aria-selected=true]{background:#1F7A55;border-color:#1F7A55;color:#FFFFFF}
+body[data-sstyle=mint] #owner .activity{background:#1F7A55}body[data-sstyle=mint] #owner .ci{border-color:#1F7A55}body[data-sstyle=mint] #client .back{color:#0F2A1F}
+body[data-sstyle=mint] #client .ph-name,body[data-sstyle=mint] #owner .o-name{font-family:'Archivo',sans-serif;font-weight:600}
+body[data-sstyle=noir] #client,body[data-sstyle=noir] #owner{--acc:#F5F5F5;--acct:#121212;--navy:#F5F5F5;--ink:#F5F5F5;--muted:#ABABAB;--line:#333333;--cream:#121212;--mint:#2E2E2E;--teal:#F5F5F5;color:#F5F5F5}
+body[data-sstyle=noir] #client{background:#121212}body[data-sstyle=noir] #owner{background:#1F1F1F}
+body[data-sstyle=noir] #client .cls,body[data-sstyle=noir] #client .chip,body[data-sstyle=noir] #client .sheet input,body[data-sstyle=noir] #owner .ci,body[data-sstyle=noir] #owner .add input{background:#1F1F1F;color:#F5F5F5}
+body[data-sstyle=noir] #client .big,body[data-sstyle=noir] #client .chip.on,body[data-sstyle=noir] #client .cs.mine,body[data-sstyle=noir] #owner .ci.on,body[data-sstyle=noir] #owner .add button,body[data-sstyle=noir] #owner .otabs button[aria-selected=true]{background:#F5F5F5;border-color:#F5F5F5;color:#121212}
+body[data-sstyle=noir] #owner .activity{background:#000000}body[data-sstyle=noir] #owner .ci{border-color:#F5F5F5}body[data-sstyle=noir] #client .back{color:#F5F5F5}
+body[data-sstyle=noir] #client .ph-name,body[data-sstyle=noir] #owner .o-name{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:2px}
+body[data-sstyle=blush] #client,body[data-sstyle=blush] #owner{--acc:#3D1F2A;--acct:#FFFFFF;--navy:#3D1F2A;--ink:#3D1F2A;--muted:#7A5662;--line:#F0D3D8;--cream:#FBEFEF;--mint:#F6D9DE;--teal:#3D1F2A;color:#3D1F2A}
+body[data-sstyle=blush] #client{background:#FBEFEF}body[data-sstyle=blush] #owner{background:#FFFFFF}
+body[data-sstyle=blush] #client .cls,body[data-sstyle=blush] #client .chip,body[data-sstyle=blush] #client .sheet input,body[data-sstyle=blush] #owner .ci,body[data-sstyle=blush] #owner .add input{background:#FFFFFF;color:#3D1F2A}
+body[data-sstyle=blush] #client .big,body[data-sstyle=blush] #client .chip.on,body[data-sstyle=blush] #client .cs.mine,body[data-sstyle=blush] #owner .ci.on,body[data-sstyle=blush] #owner .add button,body[data-sstyle=blush] #owner .otabs button[aria-selected=true]{background:#3D1F2A;border-color:#3D1F2A;color:#FFFFFF}
+body[data-sstyle=blush] #owner .activity{background:#3D1F2A}body[data-sstyle=blush] #owner .ci{border-color:#3D1F2A}body[data-sstyle=blush] #client .back{color:#3D1F2A}
+body[data-sstyle=blush] #client .ph-name,body[data-sstyle=blush] #owner .o-name{font-family:'DM Serif Display',serif;font-weight:600}
+body[data-sstyle=sky] #client,body[data-sstyle=sky] #owner{--acc:#2457A6;--acct:#FFFFFF;--navy:#12263F;--ink:#12263F;--muted:#4A5D75;--line:#D3E0F0;--cream:#EEF4FB;--mint:#DCE8F7;--teal:#12263F;color:#12263F}
+body[data-sstyle=sky] #client{background:#EEF4FB}body[data-sstyle=sky] #owner{background:#FFFFFF}
+body[data-sstyle=sky] #client .cls,body[data-sstyle=sky] #client .chip,body[data-sstyle=sky] #client .sheet input,body[data-sstyle=sky] #owner .ci,body[data-sstyle=sky] #owner .add input{background:#FFFFFF;color:#12263F}
+body[data-sstyle=sky] #client .big,body[data-sstyle=sky] #client .chip.on,body[data-sstyle=sky] #client .cs.mine,body[data-sstyle=sky] #owner .ci.on,body[data-sstyle=sky] #owner .add button,body[data-sstyle=sky] #owner .otabs button[aria-selected=true]{background:#2457A6;border-color:#2457A6;color:#FFFFFF}
+body[data-sstyle=sky] #owner .activity{background:#2457A6}body[data-sstyle=sky] #owner .ci{border-color:#2457A6}body[data-sstyle=sky] #client .back{color:#12263F}
+body[data-sstyle=sky] #client .ph-name,body[data-sstyle=sky] #owner .o-name{font-family:'Nunito',sans-serif;font-weight:600}
+</style>
 </head>
 <body data-view="client">
 <header class="dnav"><div class="wrap">
@@ -31,6 +68,8 @@
       
       <label for="bizname">Type your business name: <input id="bizname" maxlength="40" autocomplete="off" placeholder="e.g. Pilates with Jess"></label>
       <div class="bnote">Your business name goes on your booking page and every text your clients get.</div>
+      <div class="sstyles"><span>Pick a style:</span><button type="button" class="sbtn" data-s="" aria-pressed="true"><i style="background:#137A6F"></i>Erea Solo</button><button type="button" class="sbtn" data-s="clay" aria-pressed="false"><i style="background:#3A2E27"></i>Soft Clay</button><button type="button" class="sbtn" data-s="mint" aria-pressed="false"><i style="background:#1F7A55"></i>Fresh Mint</button><button type="button" class="sbtn" data-s="noir" aria-pressed="false"><i style="background:#121212"></i>Studio Noir</button><button type="button" class="sbtn" data-s="blush" aria-pressed="false"><i style="background:#3D1F2A"></i>Blush</button><button type="button" class="sbtn" data-s="sky" aria-pressed="false"><i style="background:#2457A6"></i>Sky</button></div>
+      <div class="bnote">Every style works on your real booking link and My Schedule too. <a href="/styles#solo">See all styles</a>.</div>
     </div>
   </section>
 
@@ -53,7 +92,7 @@
 <script>window.EREA_DEMO={ownerTabLabel:'Your view',
   defaultName:'Your Business Name', logo:false, bookTitle:'Book a session', ownerTitle:'My Schedule',
   newPay:'due', pays:['pack','paid','due'],
-  payLabels:{pack:'Package',paid:'Paid',due:'Pay instructor'},
+  payLabels:{pack:'Package',paid:'Paid',due:'To collect'},
   ownerTabs:[['today','Schedule'],['wait','Waitlist'],['members','Clients'],['share','Booking link']],
   planWord:'Package',
   schedule:[
@@ -63,8 +102,10 @@
     {time:'6:00 PM',name:'Duet Pilates',who:'Duet',where:'Rented room, Bloomfield',cap:2,full:true}
   ],
   members:[['Maya R.','10-session package','7','—'],['Jordan T.','Monthly privates','4','Nov 30'],['Aisha K.','5-session package','1','—'],['Dev P.','Drop-in','—','—']],
-  txtBooked:"Hi {first}! You're booked with {biz}: {cls}, {when}. Where: {where}. Please pay your instructor before class. Reply C to confirm or R to cancel."
+  txtBooked:"Hi {first}! You're booked with {biz}: {cls}, {when}. Where: {where}. Please pay {biz} before your session. Reply C to confirm or R to cancel."
 };</script>
-<script src="/demo.js?v=20261109b"></script>
+<script src="/demo.js?v=20261111a"></script>
+<script>document.querySelectorAll('.sbtn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.sbtn').forEach(function(x){x.setAttribute('aria-pressed',x===b);});if(b.dataset.s)document.body.setAttribute('data-sstyle',b.dataset.s);else document.body.removeAttribute('data-sstyle');});});try{var q=new URLSearchParams(location.search).get('style');var t=q&&document.querySelector('.sbtn[data-s="'+q.replace(/[^a-z]/g,'')+'"]');if(t)t.click();}catch(e){}</script>
+
 </body>
 </html>

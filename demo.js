@@ -139,7 +139,7 @@
   });
   function byId(id) { return sessions.filter(function (s) { return s.id === id; })[0]; }
   function fill(tpl, first, s) {
-    return tpl.replace('{first}', first).replace('{biz}', bizName).replace('{cls}', s.name).replace('{when}', fmtWhen(s)).replace('{where}', s.where);
+    return tpl.replace('{first}', first).split('{biz}').join(bizName).replace('{cls}', s.name).replace('{when}', fmtWhen(s)).replace('{where}', s.where);
   }
   function reply(r) {
     var m = texts[texts.length - 1]; m.answered = r;
