@@ -1,0 +1,35 @@
+{
+  "look": "linen",
+  "name": "Willow Studio",
+  "bookingId": "8faa2137aeb6",
+  "seoTagline": "Pilates & barre in Montclair, NJ",
+  "description": "Small-group Pilates and barre in Montclair, NJ. Book your spot in seconds, or join the waitlist and get a text when a spot opens.",
+  "eyebrow": "Pilates & barre · Montclair, NJ",
+  "headline": "Move slow. Feel strong.",
+  "intro": "Small classes, real attention. Book your spot in seconds. If a class is full, join the waitlist and we'll text you when a spot opens.",
+  "labels": { "book": "Book a class", "services": "Classes", "about": "Our story" },
+  "servicesEyebrow": "This week",
+  "services": [
+    { "name": "Mat Pilates", "desc": "Core, breath and control. All levels.", "length": "50 min", "price": "$28" },
+    { "name": "Sculpt", "desc": "Light weights, barre work, slow burn.", "length": "45 min", "price": "$28" },
+    { "name": "Restore", "desc": "Long stretches and a calm finish to the day.", "length": "60 min", "price": "$28" },
+    { "name": "Private session", "desc": "One on one, built around you.", "length": "55 min", "price": "$95" }
+  ],
+  "pricing": [
+    { "plan": "Drop-in", "price": "$28", "details": "One class, any time." },
+    { "plan": "10-class pack", "price": "$240", "details": "Use within 4 months.", "featured": true },
+    { "plan": "Monthly", "price": "$169", "details": "Unlimited classes, cancel any time." }
+  ],
+  "about": [
+    "Willow started in a sunny back room with six mats and one rule: no one gets lost in the crowd.",
+    "Classes stay small so every person gets noticed, corrected and cheered on. Come as you are."
+  ],
+  "aboutTitle": "Small on purpose",
+  "faq": [
+    { "q": "What if a class is full?", "a": "Join the waitlist when you book. If someone cancels, you get a text. Reply YES and the spot is yours." },
+    { "q": "How do I cancel?", "a": "Reply R to your reminder text, or tap cancel on your booking. Please give us 12 hours so someone on the waitlist can take your spot." },
+    { "q": "I'm new. Which class should I take?", "a": "Start with Mat Pilates. Every class has options for every level." }
+  ],
+  "hours": ["Mon–Fri 7 AM – 8 PM", "Sat–Sun 8 AM – 1 PM"],
+  "contact": { "address": "100 Bloomfield Ave, Montclair, NJ 07042", "phone": "(973) 555-0142", "email": "hello@willowstudio.com", "instagram": "willowstudio" }
+}

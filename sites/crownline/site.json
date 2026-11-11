@@ -1,0 +1,39 @@
+{
+  "look": "crown",
+  "name": "Crown Line Barber Co.",
+  "bookingId": "8faa2137aeb6",
+  "seoTagline": "Cuts, fades and hot towel shaves in Newark, NJ",
+  "description": "Cuts, fades and hot towel shaves in Newark, NJ. Pick your barber and your time, or join the waitlist and get a text when a chair opens.",
+  "eyebrow": "Cuts · Fades · Hot towel shaves",
+  "headline": "Look sharp. *Book in seconds.*",
+  "intro": "Pick your barber and your time. Chair booked up? Hop on the waitlist and we'll text you when a spot opens.",
+  "labels": { "book": "Book a cut", "services": "Services", "about": "The shop", "visit": "Find us" },
+  "servicesEyebrow": "The menu",
+  "services": [
+    { "name": "Haircut", "desc": "Clipper or scissor, finished with a line-up.", "length": "45 min", "price": "$40" },
+    { "name": "Cut + beard", "desc": "Full cut plus beard shape and hot towel.", "length": "60 min", "price": "$55" },
+    { "name": "Hot towel shave", "desc": "Straight razor, hot towels, cold finish.", "length": "40 min", "price": "$45" },
+    { "name": "Kids cut", "desc": "12 and under.", "length": "30 min", "price": "$28" },
+    { "name": "Line-up", "desc": "Edges and beard tidy between cuts.", "length": "15 min", "price": "$20" }
+  ],
+  "aboutEyebrow": "Since 2019",
+  "aboutTitle": "A real shop. Real barbers.",
+  "about": [
+    "Crown Line is three chairs, good music and barbers who remember how you like it.",
+    "Book ahead and walk straight into the chair. No more waiting around on a Saturday."
+  ],
+  "team": [
+    { "name": "Andre", "role": "Owner · fades and designs" },
+    { "name": "Marcus", "role": "Beards and shaves" },
+    { "name": "Jay", "role": "Kids and classic cuts" }
+  ],
+  "teamTitle": "Pick your barber",
+  "teamEyebrow": "The chairs",
+  "waitlist": { "eyebrow": "Chair booked up?", "text": "Hop on the waitlist. When a spot opens, we text you first. Reply YES and the chair is yours.", "button": "Join the waitlist" },
+  "faq": [
+    { "q": "Do you take walk-ins?", "a": "When a chair is free, yes. Booking is the only way to skip the wait." },
+    { "q": "Running late?", "a": "Text us. After 10 minutes we may need to give your spot to the next person on the waitlist." }
+  ],
+  "hours": ["Tue–Fri 10 AM – 8 PM", "Sat 8 AM – 6 PM", "Sun–Mon closed"],
+  "contact": { "address": "250 Springfield Ave, Newark, NJ 07103", "phone": "(973) 555-0177", "instagram": "crownlinebarber" }
+}

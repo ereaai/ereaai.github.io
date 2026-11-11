@@ -12,3 +12,5 @@ Erea AI website and app links, hosted free on GitHub Pages.
 - `/solo` - Erea Solo page (independent instructors, teal)
 - `/solo/book?b=<booking id>&n=<name>` - Erea Solo client booking page (Solo engine), no Google banner
 - `/solo/desk?s=<instructor key>` - Erea Solo "My Schedule" launcher (installable app)
+
+- `/sites/<slug>/` - Erea customer websites (also at <slug>.ereaai.com). How it works: sites/_build/README.md
