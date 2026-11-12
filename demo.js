@@ -6,6 +6,8 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var bizName = C.defaultName;
+  var A = !!C.appt; // appointment businesses (barbers etc.): times grouped under each person
+  function lab(s) { return A ? (s.who || s.name) : s.name; }
 
   // ---------- sample data (fictional) ----------
   var DAYS = [];
@@ -80,16 +82,29 @@
     if (sheet) {
       var s = sheet, full = spotsLeft(s) <= 0;
       h += '<div class="sheet"><button class="back" data-act="back">← Back</button>' +
-        '<h3>' + esc(s.name) + '</h3><p class="muted">' + fmtWhen(s) + (s.where ? '<br>📍 ' + esc(s.where) : '') + '</p>' +
-        (full ? '<p class="full-note">This one is full. Join the waitlist and you\'ll get a text the moment a spot opens.</p>' : '') +
+        '<h3>' + esc(A ? 'Your appointment' : s.name) + '</h3><p class="muted">' + (A ? 'with ' + esc(s.who) + '<br>' : '') + fmtWhen(s) + (s.where ? '<br>📍 ' + esc(s.where) : '') + '</p>' +
+        (full ? '<p class="full-note">' + (A ? 'This time is taken. Join the waitlist and you\'ll get a text if it opens up.' : 'This one is full. Join the waitlist and you\'ll get a text the moment a spot opens.') + '</p>' : '') +
         '<label>Your name<input id="yname" autocomplete="off" placeholder="e.g. Maya" maxlength="30"></label>' +
         '<label>Mobile number<input id="yphone" inputmode="tel" autocomplete="off" placeholder="(555) 555-0123" maxlength="20"></label>' +
         '<label class="chk"><input type="checkbox" id="yok"><span>I agree to get booking texts from <span data-biz>' + esc(bizName) + '</span>. Reply STOP to opt out.</span></label>' +
         '<p class="tiny">Practice demo: this number isn\'t saved and no real text is sent.</p>' +
-        '<button class="big" data-act="' + (full ? 'wait' : 'book') + '">' + (full ? 'Join the waitlist' : 'Book my spot') + '</button></div>';
+        '<button class="big" data-act="' + (full ? 'wait' : 'book') + '">' + (full ? 'Join the waitlist' : (A ? 'Book this time' : 'Book my spot')) + '</button></div>';
     } else {
       h += '<div class="chips">' + DAYS.map(function (d, i) { return '<button class="chip' + (i === state.cDay ? ' on' : '') + '" data-cday="' + i + '">' + dayLabel(d, i) + '</button>'; }).join('') + '</div>';
       var list = sessions.filter(function (s) { return s.day === state.cDay; });
+      if (A) {
+        var who = [], g = {};
+        list.forEach(function (s) { if (!g[s.who]) { g[s.who] = []; who.push(s.who); } g[s.who].push(s); });
+        h += '<div class="list">' + who.map(function (k) {
+          var open = g[k].filter(function (s) { return spotsLeft(s) > 0; }).length;
+          return '<div class="bcard"><div class="bh"><span class="bav">' + esc(k.charAt(0)) + '</span><span><b>' + esc(k) + '</b><small>' + (open ? open + (open === 1 ? ' open time' : ' open times') : 'Booked up · tap a time to join the waitlist') + '</small></span></div><div class="tbtns">' +
+            g[k].map(function (s) {
+              var mine = state.you && state.you.sid === s.id, full = spotsLeft(s) <= 0;
+              return '<button class="tbtn' + (mine ? ' mine' : full ? ' full' : '') + '" data-open="' + s.id + '">' + s.time + (mine ? ' ✓' : full ? '<small>Waitlist</small>' : '') + '</button>';
+            }).join('') + '</div></div>';
+        }).join('') + '</div>';
+        cEl.innerHTML = h; return;
+      }
       h += '<div class="list">' + list.map(function (s) {
         var left = spotsLeft(s), mine = state.you && state.you.sid === s.id;
         return '<button class="cls" data-open="' + s.id + '"><span class="ct">' + s.time + '</span><span class="cn"><b>' + esc(s.name) + '</b><small>' + esc(s.who) + (s.where ? ' · ' + esc(s.where) : '') + '</small></span>' +
@@ -115,22 +130,22 @@
         state.you = { sid: s.id, name: nm };
         sheet = null;
         addText(bizName, fill(C.txtBooked, first, s), ['C', 'R']);
-        logOwner('New booking: ' + nm + ' → ' + s.name + ', ' + fmtWhen(s) + '. Confirmation text sent.', 'new');
+        logOwner('New booking: ' + nm + ' → ' + lab(s) + ', ' + fmtWhen(s) + '. Confirmation text sent.', 'new');
       } else {
         s.wait.push({ name: nm + ' (you)', you: true });
         state.youWait = { sid: s.id, name: nm };
         sheet = null;
-        addText(bizName, 'Hi ' + first + '! You\'re on the waitlist for ' + s.name + ', ' + fmtWhen(s) + '. We\'ll text you the moment a spot opens.');
-        logOwner(nm + ' joined the waitlist for ' + s.name + ', ' + fmtWhen(s) + '.', 'new');
+        addText(bizName, 'Hi ' + first + '! You\'re on the waitlist for ' + (A ? 'a time with ' + s.who : s.name) + ', ' + fmtWhen(s) + '. We\'ll text you the moment ' + (A ? 'it opens up.' : 'a spot opens.'));
+        logOwner(nm + ' joined the waitlist for ' + lab(s) + ', ' + fmtWhen(s) + '.', 'new');
         setTimeout(function () { // simulate someone cancelling so they can try YES
           if (!state.youWait) return;
           var leaver = s.people.filter(function (p) { return !p.you; })[0];
           if (!leaver) return;
           s.people = s.people.filter(function (p) { return p !== leaver; });
-          logOwner(leaver.name + ' replied R (cancel). Spot opened in ' + s.name + '.', 'cancel');
+          logOwner(leaver.name + ' replied R (cancel). ' + (A ? 'Time opened with ' + s.who : 'Spot opened in ' + s.name) + '.', 'cancel');
           s.wait = s.wait.filter(function (w) { return !w.you; });
           s.offer = { name: nm };
-          addText(bizName, 'Good news ' + first + '! A spot just opened in ' + s.name + ', ' + fmtWhen(s) + '. Want it? Reply YES or NO.', ['YES', 'NO']);
+          addText(bizName, 'Good news ' + first + '! ' + (A ? 'A time with ' + s.who + ' just opened up: ' : 'A spot just opened in ' + s.name + ', ') + fmtWhen(s) + '. Want it? Reply YES or NO.', ['YES', 'NO']);
           logOwner('Waitlist offer texted to ' + nm + '.', 'offer');
         }, 4000);
       }
@@ -139,7 +154,7 @@
   });
   function byId(id) { return sessions.filter(function (s) { return s.id === id; })[0]; }
   function fill(tpl, first, s) {
-    return tpl.replace('{first}', first).split('{biz}').join(bizName).replace('{cls}', s.name).replace('{when}', fmtWhen(s)).replace('{where}', s.where);
+    return tpl.replace('{first}', first).split('{biz}').join(bizName).replace('{cls}', s.name).replace('{who}', s.who).replace('{when}', fmtWhen(s)).replace('{where}', s.where);
   }
   function reply(r) {
     var m = texts[texts.length - 1]; m.answered = r;
@@ -153,8 +168,8 @@
       var w = byId(state.youWait.sid); w.offer = null;
       w.people.push({ name: state.youWait.name + ' (you)', pay: C.newPay, you: true, fresh: true });
       state.you = { sid: w.id, name: state.youWait.name }; state.youWait = null;
-      logOwner('Replied YES → booked from the waitlist. Class full again.', 'ok');
-      addText(bizName, 'You\'re in! See you at ' + w.name + ', ' + fmtWhen(w) + '.');
+      logOwner('Replied YES → booked from the waitlist. ' + (A ? 'Time filled again.' : 'Class full again.'), 'ok');
+      addText(bizName, 'You\'re in! See you ' + (A ? 'with ' + w.who + ', ' : 'at ' + w.name + ', ') + fmtWhen(w) + '.');
     } else if (r === 'NO') { state.youWait = null; logOwner('Waitlist offer declined. Moving to the next person.', 'cancel'); addText(bizName, 'No problem. You\'re off the waitlist for this one.'); }
     renderClient(); renderOwner();
   }
@@ -184,7 +199,7 @@
       h += '<div class="chips">' + DAYS.map(function (d, i) { return '<button class="chip' + (i === state.oDay ? ' on' : '') + '" data-oday="' + i + '">' + dayLabel(d, i) + '</button>'; }).join('') + '</div>';
       sessions.filter(function (s) { return s.day === state.oDay; }).forEach(function (s) {
         var pct = Math.round(100 * s.people.length / s.cap);
-        h += '<div class="ocls"><div class="ocls-h"><div><b>' + s.time + ' · ' + esc(s.name) + '</b><small>' + esc(s.who) + (s.where ? ' · 📍 ' + esc(s.where) : '') + '</small></div><span class="cnt">' + s.people.length + '/' + s.cap + '</span></div>' +
+        h += '<div class="ocls"><div class="ocls-h"><div><b>' + s.time + ' · ' + esc(A ? s.who : s.name) + '</b><small>' + esc(A ? s.name : s.who) + (s.where ? ' · 📍 ' + esc(s.where) : '') + '</small></div><span class="cnt">' + (A ? (spotsLeft(s) <= 0 ? 'Booked' : 'Open') : s.people.length + '/' + s.cap) + '</span></div>' +
           '<div class="bar"><i style="width:' + pct + '%"></i></div>';
         s.people.forEach(function (p, i) {
           h += '<div class="row' + (p.fresh ? ' fresh' : '') + (p.you ? ' you' : '') + '"><span class="pn">' + esc(p.name) + '</span>' + payTag(p) +
@@ -194,10 +209,10 @@
         if (s.wait.length) h += '<div class="wl">Waitlist: ' + s.wait.map(function (w) { return esc(w.name); }).join(', ') + '</div>';
         h += '<form class="add" data-add="' + s.id + '"><input placeholder="+ Add a client by name" maxlength="20" aria-label="Add a client"><button>Add</button></form></div>';
       });
-      h += '<p class="hint">Try it: tap ✕ on someone in a full class and watch the waitlist refill the spot by itself.</p>';
+      h += '<p class="hint">' + (A ? 'Try it: tap ✕ on a booked time and watch the waitlist refill it by itself.' : 'Try it: tap ✕ on someone in a full class and watch the waitlist refill the spot by itself.') + '</p>';
     } else if (state.oTab === 'wait') {
       var any = false;
-      sessions.forEach(function (s) { s.wait.forEach(function (w) { any = true; h += '<div class="lrow"><b>' + esc(w.name) + '</b><span>' + esc(s.name) + ' · ' + fmtWhen(s) + '</span><em class="tag t-wait">waiting</em></div>'; }); });
+      sessions.forEach(function (s) { s.wait.forEach(function (w) { any = true; h += '<div class="lrow"><b>' + esc(w.name) + '</b><span>' + esc(lab(s)) + ' · ' + fmtWhen(s) + '</span><em class="tag t-wait">waiting</em></div>'; }); });
       if (!any) h += '<p class="muted">Nobody waiting right now.</p>';
       h += '<p class="hint">When a spot opens, the next person gets a text. If they don\'t answer in 2 hours, it moves to the next one.</p>';
     } else if (state.oTab === 'members') {
@@ -209,7 +224,7 @@
         '<div class="kpis"><div><b>7</b>spots refilled by text</div><div><b>$175</b>kept from cancellations</div><div><b>2</b>no-shows</div><div><b>4</b>new clients</div></div>' +
         '<p class="muted">Emailed to you every Monday at 8 AM.</p></div>';
     } else if (state.oTab === 'share') {
-      h += '<div class="rep"><h4>Your booking link</h4><div class="linkbox">ereaai.com/book?b=<i>your-studio</i></div><div class="linkbox">🖨️ Plus a printed QR code for your front door</div><p class="muted">Share it in your bio, print the QR for the door, or text it to clients.</p></div>';
+      h += '<div class="rep"><h4>Your booking link</h4><div class="linkbox">ereaai.com/book?b=<i>' + (A ? 'your-business' : 'your-studio') + '</i></div><div class="linkbox">🖨️ Plus a printed QR code for your front door</div><p class="muted">Share it in your bio, print the QR for the door, or text it to clients.</p></div>';
     }
     oEl.innerHTML = h;
     sessions.forEach(function (s) { s.people.forEach(function (p) { if (p.fresh) setTimeout(function () { p.fresh = false; }, 2500); }); });
@@ -226,8 +241,8 @@
     }
     if (t.dataset.x) {
       var b = t.dataset.x.split(':'), s = byId(+b[0]), gone = s.people.splice(+b[1], 1)[0];
-      if (gone.you) { state.you = null; addText(bizName, 'Your booking for ' + s.name + ' was cancelled by the front desk.'); }
-      logOwner(gone.name + ' cancelled from ' + s.name + '. Spot reopened.', 'cancel');
+      if (gone.you) { state.you = null; addText(bizName, 'Your booking ' + (A ? 'with ' + s.who : 'for ' + s.name) + ' was cancelled by the front desk.'); }
+      logOwner(gone.name + ' cancelled from ' + lab(s) + '. ' + (A ? 'Time reopened.' : 'Spot reopened.'), 'cancel');
       refill(s); renderClient(); return;
     }
   });
@@ -235,8 +250,8 @@
     e.preventDefault();
     var f = e.target, s = byId(+f.dataset.add), v = f.querySelector('input').value.trim().replace(/[^\p{L}\p{N} .'-]/gu, '').slice(0, 20);
     if (!v) return;
-    if (spotsLeft(s) <= 0) { s.wait.push({ name: v }); logOwner(v + ' added to the waitlist (class is full).', 'new'); }
-    else { s.people.push({ name: v, pay: PAYS[PAYS.length - 1], fresh: true }); logOwner('Added ' + v + ' to ' + s.name + '. Confirmation text sent.', 'new'); }
+    if (spotsLeft(s) <= 0) { s.wait.push({ name: v }); logOwner(v + ' added to the waitlist (' + (A ? 'time is taken' : 'class is full') + ').', 'new'); }
+    else { s.people.push({ name: v, pay: PAYS[PAYS.length - 1], fresh: true }); logOwner('Added ' + v + ' to ' + lab(s) + '. Confirmation text sent.', 'new'); }
     renderClient();
   });
 

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erea practice demo: barbershop</title>
+<meta name="description" content="A hands-on practice demo of Erea for a barbershop. Nothing you type is saved and no texts are sent.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFF8EF">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=DM+Sans:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/site.css?v=20261111b">
+<link rel="stylesheet" href="/demo.css?v=20261112a">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>:root{--acc:#C8402A} .intro h1 em{font-style:normal;color:#C8402A} .btn.pri{background:#C8402A} .btn.pri:hover{background:#A9321F} .logo span{color:#C8402A}</style>
+<style>
+.samples{margin:28px 0 0;background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px}
+.samples h3{margin:0;font-size:clamp(22px,3vw,28px)}
+.samples>p{margin:6px 0 0;color:#4A4458;max-width:640px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+.scard{display:block;text-decoration:none;border-radius:18px;padding:24px 22px 20px;position:relative;overflow:hidden;transition:transform .15s}
+.scard:hover{transform:translateY(-2px)}
+.scard small{display:block;font-size:12px;letter-spacing:2px;text-transform:uppercase;opacity:.75}
+.scard b{display:block;font-size:28px;line-height:1.1;margin:8px 0 10px;font-weight:400}
+.scard span{font-size:14px;font-weight:700}
+.sc-linen{background:#F5EFE6;color:#2A2420;border:1px solid #E6DDD1}
+.sc-linen b{font-family:'Cormorant Garamond',Georgia,serif;text-transform:uppercase;letter-spacing:3px}
+.sc-crown{background:#0F1B2D;color:#F2EADB}
+.sc-crown:before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:repeating-linear-gradient(135deg,#7A2E2A 0 12px,#F2EADB 12px 24px,#0F1B2D 24px 36px,#F2EADB 36px 48px)}
+.sc-crown b{font-family:'Playfair Display',Georgia,serif;font-weight:900}
+.sc-crown span{color:#D2A85A}
+</style>
+<style>
+/* The client phone and Front Desk in the business's own look: Crown (barbers) */
+#client,#owner{--acc:#7A2E2A;--navy:#0F1B2D;--ink:#0F1B2D;--muted:#4F5868;--line:#D6CBB6;--cream:#F2EADB;font-family:'Work Sans',system-ui,sans-serif;color:#0F1B2D}
+#client{background:#F2EADB;position:relative;padding-top:30px}
+#client:before,#owner:before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:repeating-linear-gradient(135deg,#7A2E2A 0 12px,#F2EADB 12px 24px,#0F1B2D 24px 36px,#F2EADB 36px 48px)}
+#owner{position:relative;overflow:hidden;padding-top:26px;background:#FFFDF8}
+#client .ph-name,#owner .o-name{font-family:'Playfair Display',Georgia,serif;font-weight:900}
+#client .ph-kicker,#owner .o-kicker{color:#B8893B;letter-spacing:2px}
+#client .bcard,#client .tbtn,#client .chip,#owner .chip,#client .sheet input,#client .big,#owner .ocls,#owner .ci,#owner .tag,#owner .otabs button,#owner .add input,#owner .add button{border-radius:2px}
+#client .bcard{background:#FFFDF8}
+#client .chip.on,#owner .chip.on{background:#B8893B;border-color:#B8893B;color:#0F1B2D}
+#client .big{background:#0F1B2D;color:#F2EADB;letter-spacing:2px;text-transform:uppercase;font-size:14px}
+#client .logo-slot,#owner .logo-slot{border-color:#B8893B;color:#B8893B}
+</style>
+</head>
+<body data-view="client">
+<header class="dnav"><div class="wrap">
+  <a class="logo" href="/"><img src="/icon-192.png" alt="" width="30" height="30" style="border-radius:8px"><b style="font-weight:900">erea<span>.</span>ai</b></a>
+  <span class="pbadge">Practice demo</span>
+  <div class="right"><a class="back" href="/">← Back to site</a></div>
+</div></header>
+<div class="notice"><div class="wrap">🛟 <b>Practice demo.</b> Tap anything. Nothing you type is saved and no real texts are sent. Want to see real texts land on your own phone? <a href="/#join">Ask us for a live demo</a>.</div></div>
+
+<main class="wrap">
+  <section class="intro" style="padding:26px 0 8px">
+    <h1>Try Erea as a client <em>and</em> as the shop.</h1>
+    <p>Book a cut as a client and watch it land on the Front Desk. Tap a taken time to join the waitlist, or tap ✕ on a booked time and see the waitlist refill it by text.</p>
+    <p>Shown in the <b>Crown</b> look, made for barbers. Running a gym or studio? <a href="/demo">See the fitness version →</a></p>
+    <p>Want to see a whole website? <a href="/sites/crownline/" target="_blank" rel="noopener">See the Crown Line sample barbershop site →</a></p>
+    <div class="brand">
+      <div class="logo-slot" aria-hidden="true">YOUR<br>LOGO</div>
+      <label for="bizname">Type your business name: <input id="bizname" maxlength="40" autocomplete="off" placeholder="e.g. Fresh Cuts Barbershop"></label>
+      <div class="bnote">Your logo and business name go on your website, booking page and Front Desk, and your name is on every text. All included with Erea.</div>
+    </div>
+  </section>
+
+  <div class="vtabs" role="tablist">
+    <button class="vtab" role="tab" data-v="client" aria-selected="true">📱 Client view</button>
+    <button class="vtab" role="tab" data-v="owner" aria-selected="false">🖥️ Owner view</button>
+  </div>
+
+  <div class="stage">
+    <div class="pane-client"><p class="vlabel">📱 What your clients see</p><div class="phone2"><div class="app" id="client"></div></div></div>
+    <div class="pane-owner"><p class="vlabel">🖥️ What you and your barbers see</p><div class="desk" id="owner"></div></div>
+  </div>
+
+  <div class="samples" style="margin-bottom:28px" id="samples">
+      <h3>Now see a full website</h3>
+      <p>Two full websites built with Erea, booking and waitlist included. Scroll them, tap around, try them on your phone. Yours gets your name, photos and prices.</p>
+      <div class="sgrid">
+        <a class="scard sc-linen" href="/sites/willow/" target="_blank" rel="noopener"><small>Look A · Linen · Pilates studio</small><b>Willow Studio</b><span>Open the sample site →</span></a>
+        <a class="scard sc-crown" href="/sites/crownline/" target="_blank" rel="noopener"><small>Look E · Crown · Barbershop</small><b>Crown Line Barber Co.</b><span>Open the sample site →</span></a>
+      </div>
+    </div>
+  <section class="endcta">
+    <div><h2>Like what you see?</h2><p>We set it all up for you, website included. The first 15 businesses keep $79 a month for life. No contract, no cut of your sales.</p></div>
+    <div class="btns"><a class="btn pri" href="https://buy.stripe.com/aFadR9fiS6UD4weeji3VC03" data-founding="79">Claim a founding spot ($79/mo)</a><a class="btn sec" style="background:transparent;color:#fff;border-color:#fff" href="/#join">Join the interest list</a></div>
+  </section>
+</main>
+<div id="toast" role="status"></div>
+<script>window.EREA_DEMO={ownerTabLabel:'Owner view', appt:true,
+  defaultName:'Crown Line Barber Co.', logo:true, bookTitle:'Book a cut', ownerTitle:'Front Desk',
+  newPay:'unpaid', pays:['paid','unpaid'],
+  payLabels:{paid:'Paid',unpaid:'Pay at shop'},
+  ownerTabs:[['today','Today'],['wait','Waitlist'],['members','Clients'],['report','Monday report'],['share','Booking link']],
+  planWord:'Plan',
+  schedule:[
+    {time:'10:00 AM',name:'Appointment',who:'Andre',cap:1},
+    {time:'10:30 AM',name:'Appointment',who:'Marcus',cap:1,full:true},
+    {time:'11:00 AM',name:'Appointment',who:'Andre',cap:1,full:true},
+    {time:'11:45 AM',name:'Appointment',who:'Jay',cap:1},
+    {time:'12:30 PM',name:'Appointment',who:'Marcus',cap:1},
+    {time:'1:00 PM',name:'Appointment',who:'Andre',cap:1},
+    {time:'1:45 PM',name:'Appointment',who:'Jay',cap:1,full:true},
+    {time:'2:00 PM',name:'Appointment',who:'Andre',cap:1,full:true},
+    {time:'3:30 PM',name:'Appointment',who:'Marcus',cap:1},
+    {time:'3:45 PM',name:'Appointment',who:'Jay',cap:1},
+    {time:'4:00 PM',name:'Appointment',who:'Andre',cap:1},
+    {time:'5:30 PM',name:'Appointment',who:'Marcus',cap:1}
+  ],
+  members:[['Jordan T.','Monthly cut club','2','Dec 1'],['Dev P.','4-cut pack','3','—'],['Luis M.','Pay per visit','—','—']],
+  txtBooked:"Hi {first}! You're booked with {who} at {biz}, {when}. Reply C to confirm or R to cancel. Reply STOP to opt out."
+};</script>
+<script src="/demo.js?v=20261112a"></script>
+</body>
+</html>

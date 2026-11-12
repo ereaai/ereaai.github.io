@@ -118,3 +118,16 @@ body{background:var(--cream)}
 .vtab{font-size:15px;padding:10px 8px}
 @media(max-width:999px){.only-wide{display:none}}
 @media(min-width:1000px){.only-narrow{display:none}}
+
+/* appointment businesses (barber demo): open times grouped under each person */
+.bcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.bcard .bh{display:flex;align-items:center;gap:10px}
+.bcard .bh b{display:block;font-size:16px;color:var(--navy)}
+.bcard .bh small{display:block;font-size:13px;color:var(--muted)}
+.bav{flex:none;width:36px;height:36px;border-radius:50%;background:var(--cream);display:grid;place-items:center;font-weight:800;color:var(--navy)}
+.tbtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tbtn{font:inherit;font-weight:700;font-size:14px;padding:8px 12px;border-radius:999px;border:1.5px solid var(--navy);background:transparent;color:var(--navy);cursor:pointer}
+.tbtn:hover{background:var(--navy);color:#fff}
+.tbtn.full{border-style:dashed;border-color:var(--line);color:var(--muted);font-weight:600}
+.tbtn.full small{font-size:10px;margin-left:6px;text-transform:uppercase;letter-spacing:.5px}
+.tbtn.mine{background:var(--navy);color:#fff}
