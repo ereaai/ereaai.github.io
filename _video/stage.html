@@ -1,0 +1,83 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=block">
+<style>
+:root{--cream:#FFF8EF;--navy:#22263B;--coral:#C8402A;--orange:#F26B4A;--yellow:#FFD54F;--teal:#137A6F;--peach:#FFE6D9;--line:#F1E2CC;--muted:#6B6070}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--navy)}
+#st{position:absolute;inset:0;overflow:hidden}
+.abs{position:absolute}
+.h{font-family:'Archivo',sans-serif;font-weight:900;letter-spacing:-.02em;line-height:1.02}
+.wm{font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;display:flex;align-items:center;gap:8px}
+.wm img{width:28px;height:28px;border-radius:7px}
+.wm span{color:var(--coral)}.wm b{font-weight:900}
+.tag{display:inline-block;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral)}
+.chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:700;font-size:16px;box-shadow:0 6px 20px rgba(34,38,59,.08)}
+.src{font-size:12px;color:var(--muted)}
+.win{background:#fff;border-radius:16px;box-shadow:0 30px 70px rgba(34,38,59,.18);overflow:hidden;border:1px solid #eadfcd}
+.win .bar{height:34px;background:#F4ECE0;display:flex;align-items:center;gap:7px;padding:0 14px}
+.win .bar i{width:11px;height:11px;border-radius:50%;background:#E3D5C2;display:block}
+.win .bar b{margin-left:14px;font-weight:600;font-size:13px;color:var(--muted);background:#fff;border-radius:7px;padding:4px 12px}
+.view{position:relative;overflow:hidden}
+.view iframe,.view img.shot{position:absolute;left:0;top:0;border:0;transform-origin:0 0;background:#fff}
+.phone{background:#14162B;border-radius:44px;padding:12px;box-shadow:0 30px 70px rgba(34,38,59,.25)}
+.phone .view{border-radius:34px}
+.li{display:flex;align-items:center;gap:14px;font-weight:700}
+.ck{flex:none;width:34px;height:34px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:19px}
+.card{background:#fff;border-radius:22px;border:1px solid var(--line);box-shadow:0 20px 50px rgba(34,38,59,.10)}
+.tapdot{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:rgba(242,107,74,.35);border:3px solid rgba(242,107,74,.9);pointer-events:none}
+.pie{border-radius:50%}
+.sample{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--butter,#FFF3C4);color:#6B4E00;border-radius:999px;padding:5px 11px}
+</style></head>
+<body><div id="st"></div>
+<script>
+const Q = new URLSearchParams(location.search);
+const V = Q.get('fmt') === 'v';            // vertical 720x1280 design, else 1280x720
+const SCENE = Q.get('scene') || 'A';
+const VID = Q.get('vid') || 'main';
+const W = V ? 720 : 1280, H = V ? 1280 : 720;
+const st = document.getElementById('st');
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = x => 1 - Math.pow(1 - clamp(x), 3);
+const easeIO = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const ap = (t, s, d = .5) => ease((t - s) / d);           // appear 0..1
+const lerp = (a, b, k) => a + (b - a) * k;
+function el(html, css) { const d = document.createElement('div'); d.className = 'abs'; d.innerHTML = html; Object.assign(d.style, css || {}); st.appendChild(d); return d; }
+function show(d, k, dy = 24) { d.style.opacity = k; d.style.transform = 'translateY(' + ((1 - k) * dy) + 'px)'; }
+function wordmark(x, y) { return el('<div class="wm"><img src="/icon-192.png" alt=""><b>erea<span>.</span>ai</b></div>', { left: x + 'px', top: y + 'px' }); }
+
+/* ---------- camera on a live page inside an iframe ---------- */
+function liveView(src, pageW, pageH, box) {
+  const v = el('<div class="view"></div>', { left: box.x + 'px', top: box.y + 'px', width: box.w + 'px', height: box.h + 'px' });
+  v.firstChild.style.width = box.w + 'px'; v.firstChild.style.height = box.h + 'px';
+  const f = document.createElement('iframe'); f.src = src; f.style.width = pageW + 'px'; f.style.height = pageH + 'px';
+  v.firstChild.appendChild(f);
+  return { wrap: v, view: v.firstChild, f, box, cam: { x: 0, y: 0, s: 1 } };
+}
+function setCam(lv, x, y, s) { lv.cam = { x, y, s }; lv.f.style.transform = 'translate(' + (-x * s) + 'px,' + (-y * s) + 'px) scale(' + s + ')'; }
+function rectIn(lv, sel) { const d = lv.f.contentDocument; const e = typeof sel === 'string' ? d.querySelector(sel) : sel; if (!e) return null; const r = e.getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height }; }
+// fit rect r into the view (contain), centred
+function fitCam(lv, r, pad = 0) { const s = Math.min(lv.box.w / (r.w + pad * 2), lv.box.h / (r.h + pad * 2)); return { x: r.x - pad - (lv.box.w / s - r.w - pad * 2) / 2, y: r.y - pad - (lv.box.h / s - r.h - pad * 2) / 2, s }; }
+function mixCam(a, b, k) { return { x: lerp(a.x, b.x, k), y: lerp(a.y, b.y, k), s: lerp(a.s, b.s, k) }; }
+// tap: ripple at the element's on-screen spot, then click it inside the page
+const taps = [];
+window.__tap = function (lv, sel, t, click = true) {
+  const d = lv.f.contentDocument; const e = typeof sel === 'string' ? d.querySelector(sel) : sel; if (!e) return false;
+  const r = e.getBoundingClientRect(); const c = lv.cam;
+  const x = lv.box.x + (r.left + r.width / 2 - c.x) * c.s, y = lv.box.y + (r.top + r.height / 2 - c.y) * c.s;
+  const dot = el('<div class="tapdot"></div>', { left: x + 'px', top: y + 'px' }); taps.push({ dot, t });
+  if (click) e.click(); return true;
+};
+function drawTaps(t) { taps.forEach(o => { const k = clamp((t - o.t) / .55); o.dot.style.opacity = k < 1 ? (1 - k) : 0; o.dot.style.transform = 'scale(' + (0.6 + k * 0.9) + ')'; }); }
+const typing = [];
+window.__type = function (lv, sel, text, t, cps = 14) { typing.push({ lv, sel, text, t, cps }); };
+function drawTyping(t) { typing.forEach(o => { const n = Math.floor(clamp((t - o.t) * o.cps, 0, o.text.length)); const e = o.lv.f.contentDocument.querySelector(o.sel); if (e && e.value !== o.text.slice(0, n)) e.value = o.text.slice(0, n); }); }
+
+let R = () => {};
+window.__render = function (t) { R(t); drawTyping(t); drawTaps(t); };
+window.__ready = () => Promise.all([...document.querySelectorAll('iframe')].map(f => new Promise(res => { if (f.contentDocument && f.contentDocument.readyState === 'complete' && f.contentDocument.body && f.contentDocument.body.children.length) res(); else f.addEventListener('load', () => res()); })));
+const SC = {};
+</script>
+<script src="/_video/scenes.js"></script>
+<script>SC[SCENE] && SC[SCENE]();</script>
+</body></html>
