@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erea AI · Make it yours</title>
+<meta name="description" content="Pick your look, make the colors yours and see your booking page come to life before you sign up. We set up the rest for you.">
+<meta property="og:title" content="Erea AI · Make it yours">
+<meta property="og:description" content="Pick a look, choose your colors, add your name and see your own booking page before you sign up.">
+<meta property="og:image" content="https://ereaai.com/icon-512.png">
+<meta name="theme-color" content="#FFD54F">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@400;500&family=Instrument+Serif&family=Inter+Tight:wght@400;500;600&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Manrope:wght@400;500;600&family=Anton&family=Barlow:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=Work+Sans:wght@400;500;600&family=Oswald:wght@500&family=DM+Serif+Display&family=Nunito:wght@600;800&display=swap">
+<link rel="stylesheet" href="/site.css?v=20261111c">
+<style>
+.st-head{padding:44px 0 10px}
+.st-head h1{font-size:clamp(38px,6vw,64px)}
+.st-head h1 em{font-style:normal;color:var(--coral)}
+.st-head .lead{font-size:19px;color:#4A4458;max-width:700px;margin:14px 0 0}
+.st-skip{font-size:14px;color:var(--muted);margin-top:10px}
+.st-skip a{color:var(--muted)}
+.plan-tog{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;margin-top:22px;gap:4px}
+.plan-tog button{border:0;background:none;font:700 15px 'DM Sans',sans-serif;padding:10px 18px;border-radius:999px;color:var(--navy);cursor:pointer}
+.plan-tog button.on{background:var(--navy);color:#fff}
+.plan-tog button.on.solo{background:var(--teal)}
+.st-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:34px;align-items:start;padding:26px 0 70px}
+.steps{display:flex;flex-direction:column;gap:18px}
+.step{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}
+.step h3{display:flex;align-items:center;gap:10px;font-size:19px}
+.step h3 i{font-style:normal;background:var(--yellow);color:var(--navy);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:14px;flex:none}
+.step .hint{color:var(--muted);font-size:14px;margin:6px 0 0}
+.fld{display:block;margin-top:14px}
+.fld>span{display:block;font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px}
+.fld .opt{font-weight:500;color:var(--muted)}
+.fld input,.fld select,.fld textarea,.crow input,.crow select{width:100%;font:16px 'DM Sans',sans-serif;padding:11px 13px;border:1px solid #E2D5C2;border-radius:12px;background:#FFFDF9;color:var(--navy)}
+.fld textarea{min-height:76px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{border:1px solid #E2D5C2;background:#FFFDF9;border-radius:999px;padding:9px 15px;font:600 14px 'DM Sans',sans-serif;color:var(--navy);cursor:pointer}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.looks-pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:14px}
+.lp{border:2px solid transparent;border-radius:16px;padding:0;background:#fff;cursor:pointer;text-align:left;overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+.lp.on{border-color:var(--coral);box-shadow:none}
+.lp .lp-sw{display:flex;height:46px}
+.lp .lp-sw b{flex:1}
+.lp .lp-t{padding:9px 11px 11px}
+.lp .lp-t strong{display:block;font-size:17px;color:var(--navy);line-height:1.1}
+.lp .lp-t small{display:block;font-size:12px;color:var(--muted);line-height:1.35;margin-top:3px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.cpick{display:flex;align-items:center;gap:10px;border:1px solid #E2D5C2;border-radius:14px;padding:8px 10px;background:#FFFDF9;cursor:pointer}
+.cpick input[type=color]{width:42px;height:42px;border:0;padding:0;background:none;cursor:pointer;flex:none}
+.cpick input[type=color]::-webkit-color-swatch-wrapper{padding:0}
+.cpick input[type=color]::-webkit-color-swatch{border:1px solid rgba(0,0,0,.18);border-radius:50%}
+.cpick input[type=color]::-moz-color-swatch{border:1px solid rgba(0,0,0,.18);border-radius:50%}
+.cpick b{display:block;font-size:14px;color:var(--navy);line-height:1.2}
+.cpick small{font-size:12px;color:var(--muted);font-family:ui-monospace,Menlo,monospace}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.presets>span{font-size:13px;font-weight:700;color:var(--muted)}
+.pre{display:flex;align-items:center;gap:7px;border:1px solid #E2D5C2;background:#fff;border-radius:999px;padding:5px 11px 5px 6px;font:600 13px 'DM Sans',sans-serif;color:var(--navy);cursor:pointer}
+.pre i{display:flex;border-radius:999px;overflow:hidden;width:34px;height:18px;border:1px solid rgba(0,0,0,.12)}
+.pre i b{flex:1}
+.warn{margin-top:12px;background:#FFF3C4;border-radius:12px;padding:10px 12px;font-size:14px;color:#5A4A12;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.warn button,.minibtn{border:0;background:var(--navy);color:#fff;border-radius:999px;padding:7px 13px;font:700 13px 'DM Sans',sans-serif;cursor:pointer}
+.minibtn.light{background:#fff;color:var(--navy);border:1px solid #E2D5C2}
+.ok-read{margin-top:10px;font-size:13px;color:#137A6F;font-weight:600}
+.files{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.file{border:1px dashed #D9C8AE;border-radius:14px;padding:12px;text-align:center;font-size:14px;color:var(--navy);cursor:pointer;background:#FFFDF9;position:relative}
+.file input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.file b{display:block}
+.file small{color:var(--muted)}
+.sched-opt{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.sched-opt label{display:flex;gap:10px;align-items:flex-start;border:1px solid #E2D5C2;border-radius:14px;padding:12px 14px;cursor:pointer;background:#FFFDF9}
+.sched-opt label.on{border-color:var(--navy);box-shadow:0 0 0 1px var(--navy)}
+.sched-opt input{margin-top:4px}
+.sched-opt b{display:block;color:var(--navy)}
+.sched-opt small{color:var(--muted);font-size:14px}
+.crows{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.crow{display:grid;grid-template-columns:1.6fr 1fr 1fr 34px;gap:6px}
+.crow input,.crow select{padding:9px 10px;font-size:15px}
+.crow button{border:0;background:none;font-size:20px;color:var(--muted);cursor:pointer}
+.go{margin-top:6px;width:100%;justify-content:center;font-size:17px;padding:16px 22px;border:0;cursor:pointer}
+.go[disabled]{opacity:.6}
+.fine{font-size:13px;color:var(--muted);margin:10px 0 0;text-align:center}
+.st-msg{margin-top:12px;background:#FDE7E2;color:#8A2512;border-radius:12px;padding:10px 12px;font-size:14px}
+.hp{position:absolute;left:-9999px}
+.done{text-align:center;padding:30px 10px}
+.done .tick{width:56px;height:56px;border-radius:50%;background:var(--teal);color:#fff;font-size:28px;display:grid;place-items:center;margin:0 auto 12px}
+
+/* ---------- live preview ---------- */
+.pv-wrap{position:sticky;top:84px}
+.pv-label{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.pv-label span:last-child{letter-spacing:0;text-transform:none;font-weight:600}
+.pv{border-radius:20px;overflow:hidden;box-shadow:0 18px 50px rgba(34,38,59,.16);background:var(--page);color:var(--ink);font-family:var(--body);transition:background .2s}
+.pv *{box-sizing:border-box}
+.pv-site{background:var(--site);color:var(--ink)}
+.pv-stripe{height:10px;background:repeating-linear-gradient(135deg,var(--stripe) 0 12px,var(--light) 12px 24px,var(--dark) 24px 36px,var(--light) 36px 48px)}
+.pv-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid var(--line)}
+.pv-brand{display:flex;align-items:center;gap:9px;font-family:var(--head);font-size:21px;line-height:1.1;color:var(--ink);min-width:0}
+.pv-brand img{width:32px;height:32px;object-fit:contain;border-radius:6px;flex:none}
+.pv-brand span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pv-links{font-size:12px;color:var(--sub);display:flex;gap:14px}
+.pv-btn{display:inline-block;background:var(--btn);color:var(--btnink);padding:10px 16px;font-size:13px;font-weight:600;white-space:nowrap}
+.pv-hero{display:grid;grid-template-columns:1.1fr .9fr;min-height:250px}
+.pv-copy{padding:28px 22px;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.pv-eye{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);font-weight:600}
+.pv-h1{font-family:var(--head);font-weight:400;font-size:clamp(28px,3.2vw,40px);line-height:1.04;margin:0;color:var(--ink);overflow-wrap:break-word;hyphens:auto}
+.pv-copy p{margin:0;font-size:14px;line-height:1.55;color:var(--sub)}
+.pv-photo{background:var(--photo) center/cover no-repeat;display:flex;align-items:flex-end;padding:14px}
+.pv-photo span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--photoink)}
+.pv-book{padding:22px}
+.pv-card{background:var(--card);color:var(--cardink);border:1px solid var(--cline);padding:18px;display:flex;flex-direction:column;gap:9px}
+.pv-ct{font-family:var(--head);font-size:22px;text-align:center;color:var(--cardink)}
+.pv-cd{font-size:12px;color:var(--cardsub);text-align:center}
+.pv-days{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:2px 0 4px}
+.pv-days span{font-size:12px;padding:6px 10px;border:1px solid var(--cline);color:var(--cardink)}
+.pv-days span.on{background:var(--btn);color:var(--btnink);border-color:var(--btn)}
+.pv-slot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border:1px solid var(--cline);background:var(--slot)}
+.pv-slot b{display:block;font-weight:600;font-size:14px;color:var(--cardink)}
+.pv-slot small{font-size:12px;color:var(--cardsub)}
+.pv-slot em{font-style:normal;font-size:11px;padding:5px 9px;white-space:nowrap;background:var(--pill);color:var(--pillink);font-weight:600}
+.pv-slot.full em{background:var(--full);color:var(--fullink)}
+.pv-card .pv-btn{text-align:center;padding:13px;margin-top:4px}
+.pv-foot{font-size:11px;text-align:center;color:var(--cardsub);padding:0 0 16px}
+
+/* look shapes */
+.lk-linen .pv-brand{letter-spacing:4px;text-transform:uppercase;font-size:18px}
+.lk-linen .pv-btn{border-radius:999px;letter-spacing:1.5px;text-transform:uppercase}
+.lk-linen .pv-h1{text-transform:uppercase;letter-spacing:1px}
+.lk-linen .pv-card{border-radius:22px}.lk-linen .pv-ct{letter-spacing:3px;text-transform:uppercase}
+.lk-linen .pv-slot{border-radius:12px}.lk-linen .pv-slot em,.lk-linen .pv-days span{border-radius:999px}
+.lk-daylight .pv-btn{border-radius:12px;font-weight:500}
+.lk-daylight .pv-nav{border-bottom:0}
+.lk-daylight .pv-hero{gap:14px;padding:0 16px 16px}
+.lk-daylight .pv-photo{border-radius:18px}
+.lk-daylight .pv-eye{align-self:flex-start;background:var(--accent2);color:var(--accent2ink);letter-spacing:0;text-transform:none;font-size:12px;padding:5px 11px;border-radius:999px}
+.lk-daylight .pv-card{border-radius:24px;border:0}
+.lk-daylight .pv-slot{border:0;border-radius:14px}.lk-daylight .pv-slot.full{outline:2px solid var(--cardink)}
+.lk-daylight .pv-slot em,.lk-daylight .pv-days span{border-radius:999px}
+.lk-evening .pv-brand{letter-spacing:6px}
+.lk-evening .pv-btn{letter-spacing:2px;text-transform:uppercase}
+.lk-evening .pv-slot{border:0;border-bottom:1px solid var(--cline);padding:11px 4px;background:transparent}
+.lk-evening .pv-slot em{letter-spacing:1px;text-transform:uppercase;border:1px solid var(--accent)}
+.lk-evening .pv-cd{letter-spacing:2px;text-transform:uppercase}
+.lk-forge .pv-brand,.lk-forge .pv-h1,.lk-forge .pv-ct,.lk-forge .pv-slot b{text-transform:uppercase}
+.lk-forge .pv-h1{font-size:clamp(34px,4vw,52px);line-height:.95}
+.lk-forge .pv-nav{border-bottom:3px solid var(--accent)}
+.lk-forge .pv-btn,.lk-forge .pv-slot em{font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.lk-forge .pv-card{border-top:4px solid var(--accent)}
+.lk-forge .pv-ct,.lk-forge .pv-cd{text-align:left}
+.lk-forge .pv-slot{border:0}.lk-forge .pv-slot.full{outline:2px solid var(--accent)}
+.lk-crown .pv-brand,.lk-crown .pv-ct{font-weight:900}
+.lk-crown .pv-h1{font-weight:900}
+.lk-crown .pv-btn{letter-spacing:1.5px;text-transform:uppercase}
+.lk-crown .pv-card{border:2px solid var(--cardink)}
+.lk-crown .pv-card .pv-btn{background:var(--cardink);color:var(--card)}
+.lk-crown .pv-cd{letter-spacing:2px;text-transform:uppercase}
+.lk-crown .pv-slot{border:0;border-bottom:1px dashed var(--cline);padding:11px 4px;background:transparent}
+
+/* Solo phone */
+.pv-phone-wrap{display:flex;justify-content:center;padding:6px 0}
+.ph{width:320px;max-width:100%;min-height:600px;border-radius:40px;border:9px solid #1A1A1A;background:var(--bg);color:var(--ink);padding:26px 15px 16px;display:flex;flex-direction:column;gap:11px;overflow:hidden;font-family:'DM Sans',sans-serif;box-shadow:0 18px 50px rgba(34,38,59,.18)}
+.ph-top{display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center}
+.ph-logo{width:54px;height:54px;border-radius:var(--lr);background:var(--bb) center/cover no-repeat;color:var(--bt);display:grid;place-items:center;font-family:var(--f);font-size:24px;overflow:hidden}
+.ph-name{font-family:var(--f);font-size:var(--ns);line-height:1.05;letter-spacing:var(--tr);text-transform:var(--tc);overflow-wrap:break-word}
+.ph-tag{font-size:12px;color:var(--muted)}
+.ph-tabs{display:flex;gap:6px;justify-content:center}
+.ph-tabs span{font-size:12px;padding:7px 11px;border-radius:var(--r);background:var(--card);color:var(--ink)}
+.ph-tabs span.on{background:var(--bb);color:var(--bt);font-weight:600}
+.ph-days{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
+.ph-days span{font-size:11px;padding:6px 8px;border-radius:var(--r);background:var(--card);color:var(--ink)}
+.ph-days span.on{background:var(--pb);color:var(--pt);font-weight:700}
+.ph-slot{background:var(--card);border-radius:var(--r);padding:11px 13px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.ph-slot b{display:block;font-size:13px;font-weight:600;color:var(--ink)}.ph-slot span{font-size:11px;color:var(--muted)}
+.ph-slot em{font-style:normal;font-size:10px;font-weight:700;padding:5px 8px;border-radius:999px;background:var(--pb);color:var(--pt);white-space:nowrap}
+.ph-btn{margin-top:auto;background:var(--bb);color:var(--bt);text-align:center;padding:13px;border-radius:var(--r);font-size:14px;font-weight:600}
+.ph-by{font-size:10px;text-align:center;color:var(--muted)}
+
+.pv-mob{display:none}
+@media(max-width:980px){
+  .st-grid{grid-template-columns:1fr}
+  .pv-wrap{position:fixed;inset:0;z-index:50;background:rgba(255,248,239,.98);padding:16px 14px 90px;overflow:auto;display:none}
+  .pv-wrap.open{display:block}
+  .pv-mob{display:flex;position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:60;box-shadow:0 10px 30px rgba(34,38,59,.3)}
+  .pv-close{display:inline-block!important}
+}
+.pv-close{display:none;border:0;background:var(--navy);color:#fff;border-radius:999px;padding:6px 12px;font:700 13px 'DM Sans',sans-serif;cursor:pointer}
+@media(max-width:560px){
+  .two,.cols,.files{grid-template-columns:1fr}
+  .pv-hero{grid-template-columns:1fr}.pv-photo{min-height:130px}
+  .pv-links{display:none}
+  .crow{grid-template-columns:1fr 1fr 34px}.crow input[name=cname]{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="/"><img src="/icon-192.png" alt="" width="30" height="30" style="border-radius:8px"><b style="font-weight:900">erea<span>.</span>ai</b></a>
+  <nav>
+    <a href="/">Erea</a>
+    <a href="/styles">Styles</a>
+    <a href="/solo" style="color:#137A6F">Erea Solo</a>
+  </nav>
+</div></header>
+
+<section class="st-head"><div class="wrap">
+  <div class="eyebrow">Make it yours</div>
+  <h1>See <em>your</em> booking page before you sign up.</h1>
+  <p class="lead">Pick a look, make the colors yours and add your name. The preview changes as you go. Your schedule is optional: send us a link and we'll set it all up for you.</p>
+  <div class="plan-tog" role="tablist" aria-label="Plan">
+    <button type="button" data-plan="studio" class="on">Erea · a real website</button>
+    <button type="button" data-plan="solo" class="solo">Erea Solo · just a booking link</button>
+  </div>
+  <p class="st-skip" id="skip"></p>
+</div></section>
+
+<div class="wrap"><div class="st-grid">
+<form class="steps" id="sform" novalidate autocomplete="on">
+
+  <div class="step">
+    <h3><i>1</i>Your business</h3>
+    <label class="fld"><span>Business name</span><input name="business" id="f-business" maxlength="60" placeholder="e.g. Willow Studio" required></label>
+    <label class="fld"><span>A short line about you <span class="opt">(optional)</span></span><input name="tagline" id="f-tagline" maxlength="80" placeholder="e.g. Small-group Pilates in Montclair"></label>
+    <div class="fld"><span>How do people book you?</span>
+      <div class="chips" id="kind">
+        <button type="button" class="chip on" data-kind="classes">Classes or group sessions</button>
+        <button type="button" class="chip" data-kind="appointments">One-on-one appointments</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <h3><i>2</i>Pick your look</h3>
+    <p class="hint" id="look-hint"></p>
+    <div class="looks-pick" id="looks"></div>
+  </div>
+
+  <div class="step">
+    <h3><i>3</i>Make the colors yours</h3>
+    <p class="hint">Tap any color to open the color wheel and pick whatever you like. The layout stays the same; the colors become yours.</p>
+    <div class="cols" id="cols"></div>
+    <div class="presets" id="presets"></div>
+    <div id="readcheck"></div>
+    <label class="fld"><span>Heading font</span><select id="f-font"></select></label>
+  </div>
+
+  <div class="step">
+    <h3><i>4</i>Logo and photo <span class="opt" style="font-weight:500;color:var(--muted);font-size:15px">(optional)</span></h3>
+    <p class="hint">Just to see how it looks. They stay on your device; after you sign up we'll ask you to send the real files.</p>
+    <div class="files">
+      <label class="file"><input type="file" accept="image/*" id="f-logo"><b>Add your logo</b><small id="logo-n">PNG or JPG</small></label>
+      <label class="file" id="photo-box"><input type="file" accept="image/*" id="f-photo"><b>Add a photo</b><small id="photo-n">Your space, your work</small></label>
+    </div>
+  </div>
+
+  <div class="step">
+    <h3><i>5</i>Your schedule</h3>
+    <div class="sched-opt" id="sched">
+      <label class="on"><input type="radio" name="sched" value="us" checked><span><b>Set it up for me (most people pick this)</b><small>Paste where your schedule lives now and we'll copy it over: your booking page, Instagram, a Google Doc. You can also text a photo of it to (973) 378-0849.</small></span></label>
+      <label><input type="radio" name="sched" value="me"><span><b>Let me add a few now</b><small>Add some classes or services to see them in your preview. We'll fill in the rest with you.</small></span></label>
+    </div>
+    <label class="fld" id="link-fld"><span>Link to your schedule or page <span class="opt">(optional)</span></span><input name="schedlink" id="f-link" maxlength="200" placeholder="e.g. instagram.com/yourbusiness or your booking page"></label>
+    <div id="rows-box" hidden>
+      <div class="crows" id="rows"></div>
+      <button type="button" class="minibtn light" id="addrow" style="margin-top:10px">+ Add another</button>
+    </div>
+  </div>
+
+  <div class="step" id="step-you">
+    <h3><i>6</i>Your details</h3>
+    <div class="two">
+      <label class="fld"><span>Your name</span><input name="name" autocomplete="name" maxlength="100" required></label>
+      <label class="fld"><span>Email</span><input name="email" type="email" autocomplete="email" maxlength="120" required></label>
+      <label class="fld"><span>Phone <span class="opt">(optional)</span></span><input name="phone" type="tel" autocomplete="tel" maxlength="30"></label>
+      <label class="fld"><span>Town <span class="opt">(optional)</span></span><input name="town" id="f-town" autocomplete="address-level2" maxlength="80" placeholder="e.g. Montclair, NJ"></label>
+    </div>
+    <label class="fld"><span>Anything else? <span class="opt">(optional)</span></span><textarea name="extra" maxlength="300" placeholder="Prices, team size, how people book you now"></textarea></label>
+    <label class="hp" aria-hidden="true"><span>Website</span><input name="website" tabindex="-1" autocomplete="off"></label>
+    <div id="st-msg" class="st-msg" role="alert" hidden></div>
+    <button type="submit" class="btn pri go" id="go">Save my setup &amp; continue to checkout →</button>
+    <p class="fine" id="go-fine"></p>
+  </div>
+</form>
+
+<aside class="pv-wrap" id="pv-wrap" aria-label="Live preview">
+  <div class="pv-label"><span>Live preview</span><span id="pv-sub"></span><button type="button" class="pv-close" id="pv-close">Close</button></div>
+  <div id="pv"></div>
+</aside>
+</div></div>
+<button type="button" class="btn pri pv-mob" id="pv-open">👀 See my preview</button>
+
+<footer><div class="wrap">
+  <div><a class="logo" href="/" style="font-size:20px"><b style="font-weight:900">erea<span>.</span>ai</b></a><div style="margin-top:6px">Booking, reminders and refills by text for small businesses. New Jersey &amp; New York.</div><div style="margin-top:4px"><a href="tel:+19733780849" style="margin:0">(973) 378-0849</a> · <a href="mailto:hello@ereaai.com" style="margin:0">hello@ereaai.com</a></div></div>
+  <div><a href="/solo">Erea Solo</a><a href="/styles">Styles</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/help">Help</a><div style="margin-top:8px">© 2026 Erea (DBA Erea AI)</div></div>
+</div></footer>
+
+<script src="/start.js?v=20261117a" defer></script>
+</body>
+</html>
