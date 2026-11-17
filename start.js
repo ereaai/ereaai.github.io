@@ -297,6 +297,35 @@
     });
   }
   readImg($('f-logo'), 'logo', 'logo-n'); readImg($('f-photo'), 'photo', 'photo-n');
+  // schedule file (photo/screenshot/PDF): sent with the setup and saved to Erea's Google Drive
+  var schedFile = null;
+  $('f-sched').addEventListener('change', function () {
+    var f = this.files && this.files[0]; schedFile = null;
+    if (!f) return;
+    if (!/^image\//.test(f.type) && f.type !== 'application/pdf') { $('sched-n').textContent = 'Please pick a photo, screenshot or PDF'; return; }
+    if (f.type === 'application/pdf' && f.size > 10 * 1024 * 1024) { $('sched-n').textContent = 'That PDF is over 10 MB. Try a photo or a link instead.'; return; }
+    schedFile = f; $('sched-n').textContent = f.name.slice(0, 40) + ' ✓'; $('sched-clear').hidden = false;
+  });
+  $('sched-clear').addEventListener('click', function () { schedFile = null; $('f-sched').value = ''; $('sched-n').textContent = 'Up to 10 MB'; this.hidden = true; });
+  function fileData(f) { // photos are shrunk (still easy to read); PDFs go as they are
+    return new Promise(function (res, rej) {
+      if (!f) return res(null);
+      var rd = new FileReader(); rd.onerror = function () { rej(new Error('fail')); };
+      rd.onload = function () {
+        if (f.type === 'application/pdf' || /gif|svg/.test(f.type)) return res({ name: f.name, type: f.type, data: String(rd.result).split(',')[1] });
+        var img = new Image();
+        img.onerror = function () { res({ name: f.name, type: f.type, data: String(rd.result).split(',')[1] }); };
+        img.onload = function () {
+          var k = Math.min(1, 2200 / Math.max(img.width, img.height)), cv = document.createElement('canvas');
+          cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
+          var cx = cv.getContext('2d'); cx.fillStyle = '#fff'; cx.fillRect(0, 0, cv.width, cv.height); cx.drawImage(img, 0, 0, cv.width, cv.height);
+          res({ name: f.name.replace(/\.[^.]+$/, '') + '.jpg', type: 'image/jpeg', data: cv.toDataURL('image/jpeg', .85).split(',')[1] });
+        };
+        img.src = rd.result;
+      };
+      rd.readAsDataURL(f);
+    });
+  }
   $('pv-open').addEventListener('click', function () { $('pv-wrap').classList.add('open'); $('pv-open').style.display = 'none'; });
   $('pv-close').addEventListener('click', function () { $('pv-wrap').classList.remove('open'); $('pv-open').style.display = ''; });
 
@@ -310,7 +339,7 @@
     if (S.font) parts.push('Heading font: ' + S.font);
     parts.push('Books: ' + S.kind);
     if (val('f-tagline')) parts.push('Line: ' + val('f-tagline'));
-    if (S.sched === 'us') parts.push('Schedule: set it up for me' + (val('f-link') ? ' - ' + val('f-link') : ''));
+    if (S.sched === 'us') parts.push('Schedule: set it up for me' + (val('f-link') ? ' - ' + val('f-link') : '') + (schedFile ? ' (file attached)' : ''));
     else {
       var mine = S.rows.filter(function (r) { return (r[0] || '').trim(); }).map(function (r) { return r[0].trim() + ' ' + r[1] + ' ' + t12(r[2]); });
       parts.push('Schedule: ' + (mine.length ? mine.join('; ') : 'none added yet') + (val('f-link') ? ' - ' + val('f-link') : ''));
@@ -331,8 +360,11 @@
     d.set('note', summary(id)); d.set('page', '/start'); d.set('website', form.elements.website.value);
     var payUrl = S.plan === 'solo' ? SOLO_STRIPE : STUDIO_STRIPE;
     if (payUrl) payUrl += '?prefilled_email=' + encodeURIComponent(form.elements.email.value.trim()) + '&client_reference_id=' + id;
-    btn.disabled = true; btn.textContent = 'Saving your setup…';
-    fetch(ENDPOINT, { method: 'POST', body: d })
+    btn.disabled = true; btn.textContent = schedFile ? 'Uploading your schedule…' : 'Saving your setup…';
+    fileData(schedFile).then(function (fd) {
+      if (fd) { d.set('fileName', fd.name); d.set('fileType', fd.type); d.set('fileData', fd.data); }
+      return fetch(ENDPOINT, { method: 'POST', body: d });
+    })
       .then(function (r) { return r.json(); })
       .then(function (r) {
         if (!r.ok) throw new Error(r.error || 'fail');

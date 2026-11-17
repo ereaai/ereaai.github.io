@@ -260,10 +260,14 @@
   <div class="step">
     <h3><i>5</i>Your schedule</h3>
     <div class="sched-opt" id="sched">
-      <label class="on"><input type="radio" name="sched" value="us" checked><span><b>Set it up for me (most people pick this)</b><small>Paste where your schedule lives now and we'll copy it over: your booking page, Instagram, a Google Doc. You can also text a photo of it to (973) 378-0849.</small></span></label>
+      <label class="on"><input type="radio" name="sched" value="us" checked><span><b>Set it up for me (most people pick this)</b><small>Paste a link to where your schedule lives now, or upload a photo, screenshot or PDF of it. We'll copy it all over for you.</small></span></label>
       <label><input type="radio" name="sched" value="me"><span><b>Let me add a few now</b><small>Add some classes or services to see them in your preview. We'll fill in the rest with you.</small></span></label>
     </div>
     <label class="fld" id="link-fld"><span>Link to your schedule or page <span class="opt">(optional)</span></span><input name="schedlink" id="f-link" maxlength="200" placeholder="e.g. instagram.com/yourbusiness or your booking page"></label>
+    <div class="fld"><span>Or upload your schedule <span class="opt">(optional)</span></span>
+      <label class="file" id="sched-box"><input type="file" accept="image/*,application/pdf" id="f-sched"><b>📎 Add a photo, screenshot or PDF</b><small id="sched-n">Up to 10 MB</small></label>
+      <button type="button" class="minibtn light" id="sched-clear" style="margin-top:8px" hidden>Remove file</button>
+    </div>
     <div id="rows-box" hidden>
       <div class="crows" id="rows"></div>
       <button type="button" class="minibtn light" id="addrow" style="margin-top:10px">+ Add another</button>
@@ -298,6 +302,6 @@
   <div><a href="/solo">Erea Solo</a><a href="/styles">Styles</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/help">Help</a><div style="margin-top:8px">© 2026 Erea (DBA Erea AI)</div></div>
 </div></footer>
 
-<script src="/start.js?v=20261117a" defer></script>
+<script src="/start.js?v=20261117b" defer></script>
 </body>
 </html>
