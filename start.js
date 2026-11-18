@@ -121,6 +121,7 @@
   }
 
   // ---------- state ----------
+  var VIEW = 'page', played = false, txTimers = [];
   var S = { plan: 'studio', look: { studio: 'linen', solo: 'clay' }, colors: {}, font: '', kind: 'classes', kindSet: false, sched: 'us', rows: [['', 'Mon', '']], logo: '', photo: '' };
   try { var saved = JSON.parse(localStorage.getItem('erea-start') || 'null'); if (saved) { ['plan', 'look', 'colors', 'font', 'kind', 'kindSet', 'sched', 'rows'].forEach(function (k) { if (saved[k] != null) S[k] = saved[k]; }); } } catch (e) {}
   var q = new URLSearchParams(location.search);
@@ -128,6 +129,35 @@
   var ql = (q.get('look') || '').toLowerCase();
   ['studio', 'solo'].forEach(function (p) { LOOKS[p].forEach(function (l) { if (l.id === ql) { S.plan = p; S.look[p] = ql; } }); });
   if (ql && !S.kindSet) S.kind = (ql === 'crown' || ql === 'noir') ? 'appointments' : 'classes';
+
+  // ---------- saved preview link (ereaai.com/start#p=...) ----------
+  // The whole setup (no logo/photo, no contact details) packed into the link, so it reopens exactly as they left it.
+  function b64(str) { return btoa(unescape(encodeURIComponent(str))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+  function unb64(str) { str = str.replace(/-/g, '+').replace(/_/g, '/'); while (str.length % 4) str += '='; return decodeURIComponent(escape(atob(str))); }
+  function pack() {
+    var l = LOOKS[S.plan].filter(function (x) { return x.id === S.look[S.plan]; })[0] || LOOKS[S.plan][0], mine = S.colors[l.id];
+    var o = { v: 1, p: S.plan, l: l.id, k: S.kind, s: S.sched, b: val('f-business'), t: val('f-tagline'), w: val('f-town') };
+    if (mine) o.c = mine;
+    if (S.font) o.f = S.font;
+    if (S.sched === 'me') o.r = S.rows.filter(function (r) { return (r[0] || '').trim(); }).slice(0, 8);
+    return location.origin + '/start#p=' + b64(JSON.stringify(o));
+  }
+  var restored = null;
+  (function () {
+    var m = /[#&]p=([A-Za-z0-9_-]+)/.exec(location.hash || ''); if (!m) return;
+    try {
+      var o = JSON.parse(unb64(m[1])); if (!o || o.v !== 1) return;
+      if (o.p === 'solo' || o.p === 'studio') S.plan = o.p;
+      if (LOOKS[S.plan].some(function (x) { return x.id === o.l; })) S.look[S.plan] = o.l;
+      if (o.c && typeof o.c === 'object') { var cc = {}; Object.keys(o.c).forEach(function (k) { if (/^#[0-9A-F]{6}$/i.test(o.c[k])) cc[k] = String(o.c[k]).toUpperCase(); }); S.colors[S.look[S.plan]] = cc; }
+      else delete S.colors[S.look[S.plan]];
+      S.font = FONTS.some(function (f) { return f[0] === o.f; }) ? (o.f || '') : '';
+      if (o.k === 'classes' || o.k === 'appointments') { S.kind = o.k; S.kindSet = true; }
+      if (o.s === 'me' || o.s === 'us') S.sched = o.s;
+      if (Array.isArray(o.r) && o.r.length) S.rows = o.r.slice(0, 8).map(function (r) { return [String(r[0] || '').slice(0, 40), DAYS.indexOf(r[1]) >= 0 ? r[1] : 'Mon', /^\d{1,2}:\d{2}$/.test(r[2] || '') ? r[2] : '']; });
+      restored = { b: String(o.b || '').slice(0, 60), t: String(o.t || '').slice(0, 80), w: String(o.w || '').slice(0, 80) };
+    } catch (e) { restored = null; }
+  })();
 
   function look() { var id = S.look[S.plan]; return LOOKS[S.plan].filter(function (l) { return l.id === id; })[0] || LOOKS[S.plan][0]; }
   function cols(l) { l = l || look(); var c = {}, mine = S.colors[l.id] || {}; l.roles.forEach(function (r) { c[r[0]] = /^#[0-9A-F]{6}$/i.test(mine[r[0]] || '') ? mine[r[0]].toUpperCase() : r[2]; }); return c; }
@@ -149,8 +179,8 @@
       : 'Already know what you want? <a href="' + STUDIO_STRIPE + '">Skip to checkout</a> and we’ll set it up with you after.';
     $('go').innerHTML = S.plan === 'solo' && !SOLO_STRIPE ? 'Save my setup &amp; get first in line →' : 'Save my setup &amp; continue to checkout →';
     $('go-fine').textContent = S.plan === 'solo'
-      ? (SOLO_STRIPE ? 'Erea Solo is $39/mo. No contract, cancel anytime. Ready in 1 to 2 weeks.' : 'Erea Solo is $39/mo. Nothing to pay today. We’ll reach out personally within 1 business day.')
-      : 'Next is secure checkout with Stripe. We build your website and booking page from this setup. Live in 1 to 2 weeks. No contract, cancel anytime.';
+      ? (SOLO_STRIPE ? 'Erea Solo is $39/mo. No contract, cancel anytime. Ready in 1 to 2 weeks.' : 'Erea Solo is $39/mo. Nothing to pay today. We’ll reach out personally within 1 business day and email you a link to your preview.')
+      : 'Next is secure checkout with Stripe. We’ll email you a link to your preview, and we build your website and booking page from this setup. Live in 1 to 2 weeks. No contract, cancel anytime.';
     $('photo-box').hidden = S.plan === 'solo';
   }
   function drawLooks() {
@@ -199,6 +229,7 @@
   }
   function headFont(l) { return S.font ? "'" + S.font + "'," + (SERIF[S.font] ? 'serif' : 'sans-serif') : (l.head || l.f); }
   function drawPreview() {
+    if (VIEW === 'texts') { if (!txTimers.length) drawTexts(false); return; }
     var l = look(), c = cols(l), name = val('f-business') || 'Your Business', tag = val('f-tagline'), town = val('f-town'), appt = S.kind === 'appointments';
     var its = items(), used = {};
     its.forEach(function (r) { used[r[1]] = 1; });
@@ -240,7 +271,56 @@
     }
     $('pv').innerHTML = html;
   }
-  function all() { drawPlan(); drawLooks(); drawColors(); drawFonts(); drawKind(); drawSched(); drawPreview(); }
+  // ---------- "Your texts": the real texts Erea sends, played out with their business name ----------
+  function nextDate(day) { // next date for that weekday, e.g. "Mon Nov 23"
+    var i = DAYS.indexOf(day), d = new Date(), want = (i + 1) % 7; // DAYS starts Monday; getDay() starts Sunday
+    var add = (want - d.getDay() + 7) % 7 || 7; d.setDate(d.getDate() + add);
+    return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }).replace(',', '');
+  }
+  function txColors() {
+    var l = look(), c = cols(l);
+    if (S.plan === 'solo') return [c.bb, on(c.bb, c.bg)];
+    var v = studioVars(l.id, c); return [v.btn, v.btnink];
+  }
+  function stopTexts() { txTimers.forEach(clearTimeout); txTimers = []; }
+  function drawTexts(animate) {
+    stopTexts();
+    var name = val('f-business') || 'Your Business', appt = S.kind === 'appointments';
+    var its = items(), it = its[1] || its[0] || ['Your class', 'Mon', '18:00'];
+    var when = nextDate(it[1]), at = t12(it[2]) || '6:00 PM', what = esc(it[0]);
+    var tc = txColors(), first = esc(name.charAt(0).toUpperCase());
+    var steps = [
+      { cap: (appt ? 'Someone cancels their ' : 'Someone cancels their spot in ') + '<b>' + what + '</b>.', sub: appt ? 'That time is open again. Your waitlist hears about it first.' : 'The class was full. Your waitlist hears about it first.' },
+      { cap: 'Erea texts the next person on your waitlist.', sub: 'From your business name, right away. No app to download.', bub: ['in', esc(name) + ': A spot just opened on ' + when + ' at ' + at + '. Reply YES to take it or NO to pass. Reply STOP to opt out.'] },
+      { cap: 'They reply YES.', sub: 'Any yes works: YES, Y, yeah, yup.', bub: ['out', 'YES'] },
+      { cap: 'They’re booked. The spot is filled.', sub: 'It’s on your calendar. You didn’t lift a finger.', bub: ['in', esc(name) + ': You’re in! Booked for ' + when + ' ' + at + '. Reply STOP to opt out.'], done: true }
+    ];
+    $('pv').innerHTML = '<div class="tx-wrap" style="--txa:' + tc[0] + ';--txat:' + tc[1] + '">' +
+      '<div class="tx-cap" id="tx-cap"></div>' +
+      '<div class="tx"><div class="tx-top"><div class="tx-av"' + (S.logo ? ' style="background-image:url(' + S.logo + ')"' : '') + '>' + (S.logo ? '' : first) + '</div><div class="tx-nm">' + esc(name) + '</div><div class="tx-sub">Text Message</div></div>' +
+      '<div class="tx-body" id="tx-body"><div class="tx-time">Today 6:02 PM</div></div></div>' +
+      '<div class="tx-foot">These are the real texts Erea sends, with your business name. Preview only: nothing is sent. <button type="button" class="minibtn light" id="tx-again" style="margin-left:4px">▶ Play again</button></div></div>';
+    var body = $('tx-body'), cap = $('tx-cap');
+    function show(i) {
+      var st = steps[i]; cap.innerHTML = st.cap + '<small>' + st.sub + '</small>';
+      if (st.bub) { var b = document.createElement('div'); b.className = 'tx-b ' + st.bub[0]; b.innerHTML = st.bub[1]; body.appendChild(b); }
+      if (st.done) { var d = document.createElement('div'); d.className = 'tx-done'; d.textContent = '✓ Spot filled by text'; body.appendChild(d); }
+    }
+    if (!animate) { steps.forEach(function (st, i) { show(i); }); [].forEach.call(body.querySelectorAll('.tx-b,.tx-done'), function (e) { e.style.animation = 'none'; }); return; }
+    played = true;
+    var t = 0;
+    steps.forEach(function (st, i) {
+      if (st.bub && st.bub[0] === 'in') { txTimers.push(setTimeout(function () { var ty = document.createElement('div'); ty.className = 'tx-typing'; ty.id = 'tx-ty'; ty.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(ty); }, t)); t += 1100; }
+      txTimers.push(setTimeout(function () { var ty = $('tx-ty'); if (ty) ty.remove(); show(i); }, t));
+      t += i === 0 ? 1800 : 2400;
+    });
+  }
+  function drawView() {
+    [].forEach.call(document.querySelectorAll('#pv-tabs button'), function (b) { b.classList.toggle('on', b.dataset.v === VIEW); });
+    if (VIEW === 'texts') drawTexts(false); else { stopTexts(); drawPreview(); }
+  }
+
+  function all() { drawPlan(); drawLooks(); drawColors(); drawFonts(); drawKind(); drawSched(); drawView(); }
 
   // ---------- events ----------
   document.querySelector('.plan-tog').addEventListener('click', function (e) {
@@ -326,6 +406,13 @@
       rd.readAsDataURL(f);
     });
   }
+  $('pv-tabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-v]'); if (!b) return;
+    VIEW = b.dataset.v; var dot = $('tx-dot'); if (VIEW === 'texts' && dot) dot.remove();
+    [].forEach.call(document.querySelectorAll('#pv-tabs button'), function (x) { x.classList.toggle('on', x === b); });
+    if (VIEW === 'texts') drawTexts(true); else { stopTexts(); drawPreview(); }
+  });
+  $('pv').addEventListener('click', function (e) { if (e.target.id === 'tx-again') drawTexts(true); });
   $('pv-open').addEventListener('click', function () { $('pv-wrap').classList.add('open'); $('pv-open').style.display = 'none'; });
   $('pv-close').addEventListener('click', function () { $('pv-wrap').classList.remove('open'); $('pv-open').style.display = ''; });
 
@@ -357,7 +444,7 @@
     var d = new URLSearchParams();
     d.set('type', S.plan); d.set('name', form.elements.name.value.trim()); d.set('business', val('f-business'));
     d.set('email', form.elements.email.value.trim()); d.set('phone', form.elements.phone.value.trim()); d.set('town', val('f-town'));
-    d.set('note', summary(id)); d.set('page', '/start'); d.set('website', form.elements.website.value);
+    d.set('note', summary(id)); d.set('preview', pack()); d.set('page', '/start'); d.set('website', form.elements.website.value);
     var payUrl = S.plan === 'solo' ? SOLO_STRIPE : STUDIO_STRIPE;
     if (payUrl) payUrl += '?prefilled_email=' + encodeURIComponent(form.elements.email.value.trim()) + '&client_reference_id=' + id;
     btn.disabled = true; btn.textContent = schedFile ? 'Uploading your schedule…' : 'Saving your setup…';
@@ -372,7 +459,8 @@
         if (payUrl) { btn.textContent = 'Saved! Taking you to checkout…'; location.href = payUrl; return; }
         var first = (form.elements.name.value || '').trim().split(' ')[0];
         $('step-you').innerHTML = '<div class="done"><div class="tick">✓</div><h3>Your setup is saved' + (first ? ', ' + esc(first) : '') + '!</h3>' +
-          '<p style="color:var(--muted);margin:8px 0 0">You’re first in line for Erea Solo. We’ll reach out personally within 1 business day to finish your booking link with you. Nothing to pay today.</p></div>';
+          '<p style="color:var(--muted);margin:8px 0 0">You’re first in line for Erea Solo. We’ll reach out personally within 1 business day to finish your booking link with you. Nothing to pay today.</p>' +
+          '<p style="color:var(--muted);margin:8px 0 0">We emailed you a link to your preview so you can look again or show someone.</p></div>';
       })
       .catch(function (err) {
         btn.disabled = false; drawPlan();
@@ -382,5 +470,10 @@
       });
   });
 
+  if (restored) {
+    $('f-business').value = restored.b; $('f-tagline').value = restored.t; $('f-town').value = restored.w;
+    $('welcome').innerHTML = '👋 Welcome back' + (restored.b ? ', <b>' + esc(restored.b) + '</b>' : '') + '! This is the preview you saved. Change anything you like, then save again when you’re ready.';
+    $('welcome').hidden = false; persist();
+  }
   all();
 })();
