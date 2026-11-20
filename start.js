@@ -456,7 +456,7 @@
       .then(function (r) {
         if (!r.ok) throw new Error(r.error || 'fail');
         persist();
-        if (payUrl) { btn.textContent = 'Saved! Taking you to checkout…'; location.href = payUrl; return; }
+        if (payUrl) { try { localStorage.setItem('erea-last', JSON.stringify({ id: id, at: Date.now() })); } catch (e) {} btn.textContent = 'Saved! Taking you to checkout…'; location.href = payUrl; return; }
         var first = (form.elements.name.value || '').trim().split(' ')[0];
         $('step-you').innerHTML = '<div class="done"><div class="tick">✓</div><h3>Your setup is saved' + (first ? ', ' + esc(first) : '') + '!</h3>' +
           '<p style="color:var(--muted);margin:8px 0 0">You’re first in line for Erea Solo. We’ll reach out personally within 1 business day to finish your booking link with you. Nothing to pay today.</p>' +

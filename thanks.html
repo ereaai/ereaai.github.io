@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erea AI · You're in</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFD54F">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/site.css?v=20261111b">
+<style>
+.ty{padding:56px 0 80px}
+.ty-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:34px 28px;max-width:640px;margin:0 auto;text-align:center}
+.ty-tick{width:64px;height:64px;border-radius:50%;background:var(--teal);color:#fff;font-size:32px;display:grid;place-items:center;margin:0 auto 16px}
+.ty h1{font-size:clamp(32px,5vw,46px)}
+.ty .lead{font-size:18px;color:#4A4458;margin:12px 0 0}
+.ty-steps{text-align:left;margin:26px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.ty-steps li{display:flex;gap:12px;align-items:flex-start;font-size:16px;color:var(--navy)}
+.ty-steps b.n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;font-size:14px}
+.ty-steps small{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.ty-note{margin-top:22px;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="/"><img src="/icon-192.png" alt="" width="30" height="30" style="border-radius:8px"><b style="font-weight:900">erea<span>.</span>ai</b></a>
+  <nav>
+    <a href="/">Erea</a>
+    <a href="/styles">Styles</a>
+    <a href="/solo" style="color:#137A6F">Erea Solo</a>
+  </nav>
+</div></header>
+
+<section class="ty"><div class="wrap">
+  <div class="ty-card">
+    <div class="ty-tick">✓</div>
+    <h1>You're in. Welcome to Erea.</h1>
+    <p class="lead">Thank you for trusting us with your bookings. Here's what happens next.</p>
+    <ul class="ty-steps">
+      <li><b class="n">1</b><span>We reach out within 1 business day<small>By email (from hello@ereaai.com), to confirm your look, your schedule and anything we need from you.</small></span></li>
+      <li><b class="n">2</b><span>We set everything up for you<small>Your website, booking page and Front Desk in your colors, plus your own text number. Nothing for you to build.</small></span></li>
+      <li><b class="n">3</b><span>You go live in 1 to 2 weeks<small>Most of that time is the phone carriers approving your text number. If you used a free-month code, your free month starts the day you go live.</small></span></li>
+    </ul>
+    <p class="ty-note">Questions? Reply to our email, write to <a href="mailto:hello@ereaai.com">hello@ereaai.com</a> or call or text <a href="tel:+19733780849">(973) 378-0849</a>. Your receipt comes from Stripe by email.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div><a class="logo" href="/" style="font-size:20px"><b style="font-weight:900">erea<span>.</span>ai</b></a><div style="margin-top:6px">Booking, reminders and refills by text for small businesses. New Jersey &amp; New York.</div></div>
+  <div><a href="/solo">Erea Solo</a><a href="/styles">Styles</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/help">Help</a><div style="margin-top:8px">© 2026 Erea (DBA Erea AI)</div></div>
+</div></footer>
+
+<script>
+// Tell the Erea Interest List which /start setup was just paid for, so it never gets a "finish signing up" reminder.
+(function () {
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbyrFCLg4X4Qu3QwydWGEG55byu4lUwXY1WxJWRWvFiN0NNra0aqV_6ovV4CvYyQb1CVGg/exec';
+  var last = null;
+  try { last = JSON.parse(localStorage.getItem('erea-last') || 'null'); } catch (e) {}
+  if (!last || !/^ST-[A-Z0-9]{4,10}$/.test(last.id || '') || Date.now() - (last.at || 0) > 3 * 86400000) return;
+  var d = new URLSearchParams();
+  d.set('action', 'paid'); d.set('id', last.id);
+  var q = new URLSearchParams(location.search); if (q.get('session_id')) d.set('session', q.get('session_id').slice(0, 80));
+  fetch(ENDPOINT, { method: 'POST', body: d }).then(function (r) { return r.json(); }).then(function (r) {
+    if (r && r.ok) { try { localStorage.removeItem('erea-last'); } catch (e) {} }
+  }).catch(function () {});
+})();
+</script>
+</body>
+</html>
